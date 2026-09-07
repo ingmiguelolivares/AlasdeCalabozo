@@ -1,0 +1,124 @@
+using UnityEngine;
+using Photon.Pun;
+using System.Linq;
+using System.Collections.Generic;
+
+public class ModelsLoader : MonoBehaviourPun
+{
+    public static ModelsLoader Instance;
+
+    [Header("Modelos de enemigos por dificultad")]
+    public GameObject[] easyModels;
+    public GameObject[] mediumModels;
+    public GameObject[] hardModels;
+
+    [Header("Calabozos por dificultad")]
+    public GameObject easyDungeon;
+    public GameObject mediumDungeon;
+    public GameObject hardDungeon;
+
+    [Header("Punto de aparición")]
+    public Transform spawnPoint;
+
+    readonly Dictionary<string, GameObject> easyLookup = new();
+    readonly Dictionary<string, GameObject> mediumLookup = new();
+    readonly Dictionary<string, GameObject> hardLookup = new();
+
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else { Destroy(gameObject); return; }
+
+        if (easyModels == null || easyModels.Length == 0)
+            easyModels = Resources.LoadAll<GameObject>("ModelosBichitos/Easy")
+                                   .OrderBy(m => m.name).ToArray();
+
+        if (mediumModels == null || mediumModels.Length == 0)
+            mediumModels = Resources.LoadAll<GameObject>("ModelosBichitos/Medium")
+                                     .OrderBy(m => m.name).ToArray();
+
+        if (hardModels == null || hardModels.Length == 0)
+            hardModels = Resources.LoadAll<GameObject>("ModelosBichitos/Hard")
+                                    .OrderBy(m => m.name).ToArray();
+
+        BuildLookup(easyModels, easyLookup);
+        BuildLookup(mediumModels, mediumLookup);
+        BuildLookup(hardModels, hardLookup);
+    }
+
+    static void BuildLookup(GameObject[] models, Dictionary<string, GameObject> lookup)
+    {
+        lookup.Clear();
+        if (models == null) return;
+
+        foreach (var model in models)
+        {
+            if (model == null) continue;
+            lookup[model.name] = model;
+        }
+    }
+
+    [PunRPC]
+    public void SpawnMonsterByName(int difficulty, string prefabName)
+    {
+        Dictionary<string, GameObject> lookup = difficulty switch
+        {
+            0 => easyLookup,
+            1 => mediumLookup,
+            2 => hardLookup,
+            _ => null
+        };
+
+        if (lookup == null)
+        {
+            Debug.LogError("❌ Dificultad fuera de rango en SpawnMonsterByName");
+            return;
+        }
+
+        if (!lookup.TryGetValue(prefabName, out var prefab) || prefab == null)
+        {
+            Debug.LogError($"❌ Prefab '{prefabName}' no encontrado en cliente.");
+            return;
+        }
+
+        // Destruir hijos actuales en spawnPoint antes de crear nuevo
+        foreach (Transform child in spawnPoint)
+            Destroy(child.gameObject);
+        // print(prefab.transform.rotation);
+        // Instanciar el prefab con rotación 180 en Y para que mire de frente
+        //GameObject monster = Instantiate(prefab, spawnPoint.position, Quaternion.Euler(0, 180, 0), spawnPoint);
+        // Obtener la rotación original del prefab
+        UnityEngine.Quaternion rotacionOriginal = prefab.transform.rotation;
+
+        // Crear una rotación de 180 grados en Y
+        UnityEngine.Quaternion rotacionExtra = UnityEngine.Quaternion.Euler(0, 180f, 0);
+
+        // Combinar la rotación original con la adicional
+        UnityEngine.Quaternion nuevaRotacion = rotacionOriginal * rotacionExtra;
+        UnityEngine.Vector3 ajuste = new UnityEngine.Vector3(0, -1.341177f, 8.411765f);
+
+        var spawnPos = (spawnPoint != null ? spawnPoint.position : transform.position) + ajuste;
+        GameObject monster = Instantiate(prefab, spawnPos, nuevaRotacion, spawnPoint);
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("posicion inicial" + (spawnPoint != null ? spawnPoint.position : transform.position) + " position [pre] " + prefab.transform.position);
+#endif
+
+        // Reproducir sonido si el prefab tiene MonsterSound
+        MonsterSound ms = monster.GetComponent<MonsterSound>();
+        if (ms != null)
+        {
+            ms.PlaySound();
+        }
+
+        // Activar calabozo correspondiente
+        ActivarCalabozoPorDificultad(difficulty);
+    }
+
+    private void ActivarCalabozoPorDificultad(int dificultad)
+    {
+        if (easyDungeon) easyDungeon.SetActive(dificultad == 0);
+        if (mediumDungeon) mediumDungeon.SetActive(dificultad == 1);
+        if (hardDungeon) hardDungeon.SetActive(dificultad == 2);
+    }
+}

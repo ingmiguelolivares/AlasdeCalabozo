@@ -1,0 +1,1296 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8106270255006379331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TrumpetBattleLose
+  m_EditorClassIdentifier: 
+  Path: event:/TrumpetBattleLose
+  Guid:
+    Data1: 1254849904
+    Data2: 1094886535
+    Data3: -1064572525
+    Data4: 1715256223
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8062965611237103696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TrumpetBattle
+  m_EditorClassIdentifier: 
+  Path: event:/TrumpetBattle
+  Guid:
+    Data1: -73137344
+    Data2: 1176296906
+    Data3: -174970724
+    Data4: 2056307574
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8052514241387981273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Bajo
+  m_EditorClassIdentifier: 
+  Path: event:/Bajo
+  Guid:
+    Data1: 1657754340
+    Data2: 1240037374
+    Data3: 2039817112
+    Data4: 618619739
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7925431904827233307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Birds
+  m_EditorClassIdentifier: 
+  Path: event:/Birds
+  Guid:
+    Data1: 246466681
+    Data2: 1099444877
+    Data3: -2088539759
+    Data4: -162556346
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7911346500546417943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_Thiri-Kreem
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_Thiri-Kreem
+  Guid:
+    Data1: 397496872
+    Data2: 1105541223
+    Data3: -1712297058
+    Data4: 1549166276
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7366902059561366638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_Tarrasque
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_Tarrasque
+  Guid:
+    Data1: -1233252191
+    Data2: 1179703929
+    Data3: 828129702
+    Data4: -1407966030
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6563945470117124168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_AbyssNothic
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_AbyssNothic
+  Guid:
+    Data1: -1890978989
+    Data2: 1212263541
+    Data3: 1311226284
+    Data4: -707031727
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6526123536720070701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_Dracoliche 2
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_Dracoliche 2
+  Guid:
+    Data1: 1269773132
+    Data2: 1290431603
+    Data3: -201171578
+    Data4: -311909851
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6216626169371419885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Navegation 2
+  m_EditorClassIdentifier: 
+  Path: event:/Navegation 2
+  Guid:
+    Data1: 1673794234
+    Data2: 1310550385
+    Data3: -755668087
+    Data4: -1856394728
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5872861406559325339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_Tarrasque 2
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_Tarrasque 2
+  Guid:
+    Data1: -1300609097
+    Data2: 1232626552
+    Data3: -1697450609
+    Data4: 67943055
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5729836902925341231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Navegation
+  m_EditorClassIdentifier: 
+  Path: event:/Navegation
+  Guid:
+    Data1: 1566582134
+    Data2: 1302791026
+    Data3: 1565435271
+    Data4: -91166353
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5321144659598291344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_DisplacerBeast
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_DisplacerBeast
+  Guid:
+    Data1: -1910614627
+    Data2: 1314755009
+    Data3: 148544701
+    Data4: -891491
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4521037666317535549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TrumpetBattleStart
+  m_EditorClassIdentifier: 
+  Path: event:/TrumpetBattleStart
+  Guid:
+    Data1: 1834778465
+    Data2: 1246573738
+    Data3: 433326245
+    Data4: 1662619223
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3950846528698506603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_AbyssNothic 2
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_AbyssNothic 2
+  Guid:
+    Data1: 2135401797
+    Data2: 1174877373
+    Data3: -1096594774
+    Data4: -1803914844
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3834318752004663541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Slides 2
+  m_EditorClassIdentifier: 
+  Path: event:/Slides 2
+  Guid:
+    Data1: 48987330
+    Data2: 1295288890
+    Data3: 956670911
+    Data4: 82401524
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3544782784130951848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WitcherSelect
+  m_EditorClassIdentifier: 
+  Path: event:/WitcherSelect
+  Guid:
+    Data1: 137294933
+    Data2: 1161901659
+    Data3: -637577059
+    Data4: 1836204410
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2584899319739290768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PrepareToPlay
+  m_EditorClassIdentifier: 
+  Path: event:/PrepareToPlay
+  Guid:
+    Data1: 213455763
+    Data2: 1176114094
+    Data3: -191055169
+    Data4: -1744857408
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2515276102371330603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Defend
+  m_EditorClassIdentifier: 
+  Path: event:/Defend
+  Guid:
+    Data1: -901256635
+    Data2: 1094591930
+    Data3: -1277804137
+    Data4: -185112369
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2270509119662151605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Chao Flaquitos
+  m_EditorClassIdentifier: 
+  Path: event:/Chao Flaquitos
+  Guid:
+    Data1: 1005832025
+    Data2: 1188995914
+    Data3: 2082071487
+    Data4: 705231916
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1288516441092685512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Slides
+  m_EditorClassIdentifier: 
+  Path: event:/Slides
+  Guid:
+    Data1: 1583464170
+    Data2: 1236605497
+    Data3: -2140016706
+    Data4: 2056581171
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-665037154933312632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WarriorSelect
+  m_EditorClassIdentifier: 
+  Path: event:/WarriorSelect
+  Guid:
+    Data1: -959114528
+    Data2: 1143811497
+    Data3: -1328597618
+    Data4: -2032872390
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-160732761574074144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_Dracoliche 3
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_Dracoliche 3
+  Guid:
+    Data1: -591625320
+    Data2: 1253433950
+    Data3: -1808266569
+    Data4: -354157294
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 6417039232392872563}
+  - {fileID: 6971350569486310919}
+  EditorEvents:
+  - {fileID: 2390800335029990286}
+  - {fileID: -7911346500546417943}
+  - {fileID: 3638903864799286882}
+  - {fileID: 1639359964229684905}
+  - {fileID: -8062965611237103696}
+  - {fileID: -3950846528698506603}
+  - {fileID: -2515276102371330603}
+  - {fileID: -6526123536720070701}
+  - {fileID: 6816667298768333332}
+  - {fileID: 2460543338054838620}
+  - {fileID: -6563945470117124168}
+  - {fileID: -3544782784130951848}
+  - {fileID: -4521037666317535549}
+  - {fileID: -8106270255006379331}
+  - {fileID: -5729836902925341231}
+  - {fileID: 5888856988939733192}
+  - {fileID: -2584899319739290768}
+  - {fileID: 3868591984164441741}
+  - {fileID: 2434533914164722336}
+  - {fileID: 7510020621462148741}
+  - {fileID: -160732761574074144}
+  - {fileID: -5321144659598291344}
+  - {fileID: 5317773537797268429}
+  - {fileID: -7366902059561366638}
+  - {fileID: 1063974362005532794}
+  - {fileID: -5872861406559325339}
+  - {fileID: -6216626169371419885}
+  - {fileID: -3834318752004663541}
+  - {fileID: 7132160089771549581}
+  - {fileID: 316714726100207576}
+  - {fileID: -665037154933312632}
+  - {fileID: 4262200237445878697}
+  - {fileID: 4260123810297844683}
+  - {fileID: -1288516441092685512}
+  - {fileID: 2481115267753191368}
+  - {fileID: 9033255526040255756}
+  - {fileID: 2739043853436710142}
+  - {fileID: -8052514241387981273}
+  - {fileID: -2270509119662151605}
+  - {fileID: -7925431904827233307}
+  - {fileID: 7477243329478412878}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 6971350569486310919}
+  StringsBanks:
+  - {fileID: 6417039232392872563}
+  cacheVersion: 131847
+  cacheTime: 638835581280000000
+  SerializableEventsDict:
+  - key: event:/Atack
+    index: 0
+  - key: event:/Monster_Thiri-Kreem
+    index: 1
+  - key: event:/BattlePin
+    index: 2
+  - key: event:/Principal Music 2
+    index: 3
+  - key: event:/TrumpetBattle
+    index: 4
+  - key: event:/Monster_AbyssNothic 2
+    index: 5
+  - key: event:/Defend
+    index: 6
+  - key: event:/Monster_Dracoliche 2
+    index: 7
+  - key: event:/PrepareToPlay 2
+    index: 8
+  - key: event:/Monster_Feerico
+    index: 9
+  - key: event:/Monster_AbyssNothic
+    index: 10
+  - key: event:/WitcherSelect
+    index: 11
+  - key: event:/TrumpetBattleStart
+    index: 12
+  - key: event:/TrumpetBattleLose
+    index: 13
+  - key: event:/Navegation
+    index: 14
+  - key: event:/Monster_Dracoliche
+    index: 15
+  - key: event:/PrepareToPlay
+    index: 16
+  - key: event:/Principal Music
+    index: 17
+  - key: event:/Monster_Thiri-Kreem 2
+    index: 18
+  - key: event:/TrumpetBattleWin
+    index: 19
+  - key: event:/Monster_Dracoliche 3
+    index: 20
+  - key: event:/Monster_DisplacerBeast
+    index: 21
+  - key: event:/Monster_GnollIdle
+    index: 22
+  - key: event:/Monster_Tarrasque
+    index: 23
+  - key: event:/Monster_GnollIdle 2
+    index: 24
+  - key: event:/Monster_Tarrasque 2
+    index: 25
+  - key: event:/Navegation 2
+    index: 26
+  - key: event:/Slides 2
+    index: 27
+  - key: event:/WarningConection
+    index: 28
+  - key: event:/How To Play
+    index: 29
+  - key: event:/WarriorSelect
+    index: 30
+  - key: event:/ArcherSelect
+    index: 31
+  - key: event:/WarriorSelect 2
+    index: 32
+  - key: event:/Slides
+    index: 33
+  - key: event:/Slides 3
+    index: 34
+  - key: event:/DURISIMO
+    index: 35
+  - key: event:/Medio
+    index: 36
+  - key: event:/Bajo
+    index: 37
+  - key: event:/Chao Flaquitos
+    index: 38
+  - key: event:/Birds
+    index: 39
+  - key: event:/Hola gorditos
+    index: 40
+--- !u!114 &316714726100207576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/How To Play
+  m_EditorClassIdentifier: 
+  Path: event:/How To Play
+  Guid:
+    Data1: -1153840417
+    Data2: 1216437028
+    Data3: -1788375117
+    Data4: -1439721556
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1063974362005532794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_GnollIdle 2
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_GnollIdle 2
+  Guid:
+    Data1: 1181765546
+    Data2: 1301645946
+    Data3: -1559174015
+    Data4: -1858723741
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1639359964229684905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Principal Music 2
+  m_EditorClassIdentifier: 
+  Path: event:/Principal Music 2
+  Guid:
+    Data1: 1066665535
+    Data2: 1321075098
+    Data3: -645851511
+    Data4: -894140719
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2390800335029990286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Atack
+  m_EditorClassIdentifier: 
+  Path: event:/Atack
+  Guid:
+    Data1: 1948817439
+    Data2: 1219990825
+    Data3: 653586816
+    Data4: 773276990
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2434533914164722336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_Thiri-Kreem 2
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_Thiri-Kreem 2
+  Guid:
+    Data1: 998396055
+    Data2: 1232068058
+    Data3: -1579950461
+    Data4: 241205919
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2460543338054838620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_Feerico
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_Feerico
+  Guid:
+    Data1: 706678865
+    Data2: 1189642692
+    Data3: -1024690523
+    Data4: -1278342312
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2481115267753191368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Slides 3
+  m_EditorClassIdentifier: 
+  Path: event:/Slides 3
+  Guid:
+    Data1: 1289622013
+    Data2: 1130471906
+    Data3: 1501449402
+    Data4: 805707547
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2739043853436710142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Medio
+  m_EditorClassIdentifier: 
+  Path: event:/Medio
+  Guid:
+    Data1: -211516848
+    Data2: 1250560170
+    Data3: -740443505
+    Data4: -1930513809
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3638903864799286882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BattlePin
+  m_EditorClassIdentifier: 
+  Path: event:/BattlePin
+  Guid:
+    Data1: 578676283
+    Data2: 1326994886
+    Data3: -1455734849
+    Data4: 1994836795
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 22952
+--- !u!114 &3868591984164441741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Principal Music
+  m_EditorClassIdentifier: 
+  Path: event:/Principal Music
+  Guid:
+    Data1: -1945458029
+    Data2: 1216296475
+    Data3: 1925829283
+    Data4: -1443273971
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4260123810297844683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WarriorSelect 2
+  m_EditorClassIdentifier: 
+  Path: event:/WarriorSelect 2
+  Guid:
+    Data1: -183953176
+    Data2: 1336352758
+    Data3: -455324758
+    Data4: -2103016097
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4262200237445878697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ArcherSelect
+  m_EditorClassIdentifier: 
+  Path: event:/ArcherSelect
+  Guid:
+    Data1: -1196239646
+    Data2: 1225687554
+    Data3: 1627463867
+    Data4: -2102953040
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5317773537797268429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_GnollIdle
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_GnollIdle
+  Guid:
+    Data1: -655872864
+    Data2: 1160090875
+    Data3: -486820446
+    Data4: 798029823
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5888856988939733192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monster_Dracoliche
+  m_EditorClassIdentifier: 
+  Path: event:/Monster_Dracoliche
+  Guid:
+    Data1: 2130329230
+    Data2: 1333629667
+    Data3: 710971027
+    Data4: -149682340
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6417039232392872563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/ImaginatioSound/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638835581280000000
+  FileSizes:
+  - Name: Desktop
+    Value: 2590
+  Exists: 1
+--- !u!114 &6816667298768333332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PrepareToPlay 2
+  m_EditorClassIdentifier: 
+  Path: event:/PrepareToPlay 2
+  Guid:
+    Data1: 1957596237
+    Data2: 1259536181
+    Data3: 1729019066
+    Data4: -1000600611
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6971350569486310919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/ImaginatioSound/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638835581280000000
+  FileSizes:
+  - Name: Desktop
+    Value: 6410464
+  Exists: 1
+--- !u!114 &7132160089771549581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WarningConection
+  m_EditorClassIdentifier: 
+  Path: event:/WarningConection
+  Guid:
+    Data1: 335979727
+    Data2: 1104828485
+    Data3: 137284260
+    Data4: -788174253
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7477243329478412878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Hola gorditos
+  m_EditorClassIdentifier: 
+  Path: event:/Hola gorditos
+  Guid:
+    Data1: -908672795
+    Data2: 1145341343
+    Data3: 1297854348
+    Data4: -710107054
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7510020621462148741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TrumpetBattleWin
+  m_EditorClassIdentifier: 
+  Path: event:/TrumpetBattleWin
+  Guid:
+    Data1: 37660311
+    Data2: 1201214261
+    Data3: 106569625
+    Data4: -289292495
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &9033255526040255756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DURISIMO
+  m_EditorClassIdentifier: 
+  Path: event:/DURISIMO
+  Guid:
+    Data1: -114727675
+    Data2: 1195398581
+    Data3: 152841868
+    Data4: -545589323
+  Banks:
+  - {fileID: 6971350569486310919}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

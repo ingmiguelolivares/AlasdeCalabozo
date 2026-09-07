@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "459399396973",
+    "firebase_url": "https://dydimagintio2025-default-rtdb.firebaseio.com",
+    "project_id": "dydimagintio2025",
+    "storage_bucket": "dydimagintio2025.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459399396973:android:fcb1376c0c9adc8167c964",
+        "android_client_info": {
+          "package_name": "com.TheNavys.AlasDelCalabozo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkrMwEa8mzOcfR1xs54QBL7l5vaM3WLko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

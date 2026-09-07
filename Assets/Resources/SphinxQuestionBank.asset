@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764029a89a9136241b7b0d30bdfd16fc, type: 3}
+  m_Name: SphinxQuestionBank
+  m_EditorClassIdentifier: Assembly-CSharp::SphinxQuestionBank
+  questions:
+  - question: "1. \xBFLa garza real puede quedarse inm\xF3vil por mucho tiempo para
+      atrapar a sus presas?\n"
+    answer: 1
+  - question: "2. \xBFEl b\xFAho listado es m\xE1s activo durante el mediod\xEDa?\n"
+    answer: 0
+  - question: "3. \xBFLa garcita rayada habita en manglares?\n"
+    answer: 1
+  - question: "4. \xBFEl chorlito grit\xF3n defiende su nido cuando est\xE1 en peligro?\n"
+    answer: 1
+  - question: "5. \xBFEl Chulo tiene un sentido del olfato muy bien desarrollado?\n"
+    answer: 1
+  - question: "6. \xBFEl carpintero ahumado forrajea solo, sin compa\xF1\xEDa?\n"
+    answer: 0
+  - question: "7. \xBFEl gavil\xE1n maromero caza principalmente al atardecer?\n"
+    answer: 1
+  - question: "8. \xBFEl periquito de anteojos habita en zonas abiertas sin mucha
+      vegetaci\xF3n?\n"
+    answer: 0
+  - question: "9. \xBFLa focha americana se alimenta buceando plantas acu\xE1ticas?\n"
+    answer: 1
+  - question: "10. \xBFEl alcaravan emite sonidos suaves cuando detecta peligro?\n"
+    answer: 0
+  - question: "11. \xBFEl sinsonte puede imitar el canto de otras aves?\n"
+    answer: 1
+  - question: "12. \xBFEl guaco duerme solo, sin refugiarse en grupos?\n"
+    answer: 0
+  - question: "13. \xBFEl pato pico azul hace su nido cerca del agua?\n\n"
+    answer: 1
+  - question: "14. \xBFEl cormor\xE1n no se zambulle para cazar peces?\n\n"
+    answer: 0
+  - question: "15. \xBFEl \xE1guila pescadora puede sumergirse para atrapar peces
+      con sus garras?\n"
+    answer: 1
+  - question: "16. \xBFLa garza silbadora es completamente silenciosa cuando se siente
+      perturbada?\n\n"
+    answer: 0
+  - question: "17. \xBFLa mirla patinaranja tiene un canto fuerte y melodioso?\n\n"
+    answer: 1
+  - question: "18. \xBFEl copet\xF3n no se adapta a convivir en zonas urbanas?\n"
+    answer: 0
+  - question: "19. \xBFLa Tingua pico verde tiene alas cortas y no puede sostener
+      un vuelo prolongado?\n"
+    answer: 1
+  - question: "20. \xBFEl chirlobirlo tiene cantos variados y melodiosos?\n\n"
+    answer: 1
+  - question: "21. \xBFEl b\xFAho listado habita en zonas des\xE9rticas?\n\n"
+    answer: 0
+  - question: "22. \xBFEl B\xFAho listado habita en zonas boscosas y sabanas?\n"
+    answer: 1
+  - question: "23. \xBFLa garcita rayada suele moverse mucho mientras espera a sus
+      presas?\n\n"
+    answer: 0
+  - question: "24. \xBFEl Chorlito grit\xF3n habita en pastizales y humedales?\n"
+    answer: 1
+  - question: "25. \xBFEl pato pico azul habita en pastizales?\n\n"
+    answer: 0

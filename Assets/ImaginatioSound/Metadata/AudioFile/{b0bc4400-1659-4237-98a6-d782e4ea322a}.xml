@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{b0bc4400-1659-4237-98a6-d782e4ea322a}">
+		<property name="assetPath">
+			<value>Monster_Tarrasque.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.4960090702947846</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6b0ef7f7-9c46-4124-9748-e121c9ff9f4e}</destination>
+		</relationship>
+	</object>
+</objects>

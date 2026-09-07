@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Escenas
+  m_EditorClassIdentifier: 
+  m_GroupName: Escenas
+  m_GUID: 479c732b5959347d1b6f1b30c06cc4ff
+  m_SerializeEntries: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 45520fd9274cb4fd6a3ec2f55ef76288, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: de0fc90bc8a2441aebb4ce87babcd4e0, type: 2}
+    - {fileID: 11400000, guid: 0fafe5f00e5e14480a471c23961e57e1, type: 2}

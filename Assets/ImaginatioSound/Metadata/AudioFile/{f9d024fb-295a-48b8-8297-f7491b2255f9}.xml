@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f9d024fb-295a-48b8-8297-f7491b2255f9}">
+		<property name="assetPath">
+			<value>Imaginatio sound_CavernSound01.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>119.95700680272108</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6b0ef7f7-9c46-4124-9748-e121c9ff9f4e}</destination>
+		</relationship>
+	</object>
+</objects>

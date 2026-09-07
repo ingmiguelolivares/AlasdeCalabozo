@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: a650e0248705c4f4ea05b41108857125
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongAlasDelanteras
+    second: {fileID: 2100000, guid: 18c90f6a1e5ade342b8ce85db4793fb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongAlasTraseras
+    second: {fileID: 2100000, guid: 0c710b628ad724e47afd6511b6ce6275, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongCuerpo
+    second: {fileID: 2100000, guid: bdcdd9501c6224b4cb6cc2a38f41dccf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongLengua
+    second: {fileID: 2100000, guid: 63c9329103376194a8322c84ebde66fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongOjos
+    second: {fileID: 2100000, guid: ee9cc5fd49b18d04a8cee7e1b306c9c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongPaladar
+    second: {fileID: 2100000, guid: e4a221e5ffa27084aa5a17c58abc4460, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongPuntaCola
+    second: {fileID: 2100000, guid: f928854a8d3c3794c9fab5924ea64a1d, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongAlasDelanteras_BaseColor
+    second: {fileID: 2800000, guid: 6522ac2ac17dd1a4d9a0e1083dc42f83, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongAlasDelanteras_Metallic
+    second: {fileID: 2800000, guid: 1d9d4b41dc64e7344a64297551cd2328, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongAlasDelanteras_Normal
+    second: {fileID: 2800000, guid: 596df9e1060d3fe4990b2faf0af938fd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongAlasDelanteras_Roughness
+    second: {fileID: 2800000, guid: ebc037cf87900fd49902eaa1da408318, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongAlasTraseras_BaseColor
+    second: {fileID: 2800000, guid: 4dbc6302b4570d740a1122ed4a4332cb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongAlasTraseras_Metallic
+    second: {fileID: 2800000, guid: 3fa0a714575f8db4a8b582022701e53c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongAlasTraseras_Normal
+    second: {fileID: 2800000, guid: ba98c9e72137aac4eb076cc1733a5fb5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongAlasTraseras_Roughness
+    second: {fileID: 2800000, guid: f33b2655a1328214a82b6f20155e69ad, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongCuerpo_BaseColor
+    second: {fileID: 2800000, guid: 633e1b2d346cf674b9c3f8d18b14e098, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongCuerpo_Metallic
+    second: {fileID: 2800000, guid: 658e6aa919a96654ca41ec48262ed94d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongCuerpo_Normal
+    second: {fileID: 2800000, guid: 5acf2af7851293e4199b69255fc3523c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongCuerpo_Roughness
+    second: {fileID: 2800000, guid: 43c0e852f6ab18a40aac5f6182decae8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongLengua_BaseColor
+    second: {fileID: 2800000, guid: 182dd5ffdeb1b254c800ccd63842fc6b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongOjos_BaseColor
+    second: {fileID: 2800000, guid: 7839d7097c5bd4c49b757e1e46dbc907, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongOjos_Metallic
+    second: {fileID: 2800000, guid: 836214b942cc2de4a9a8707de783ab7c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongOjos_Roughness
+    second: {fileID: 2800000, guid: 665019404e5a42148928163ff8450f45, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongPaladar_BaseColor
+    second: {fileID: 2800000, guid: de1f94d222d11c747adb44b8cb437a7c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongPuntaCola_BaseColor
+    second: {fileID: 2800000, guid: 1d6a43f1420ad884f81bf1881bb74d79, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongPuntaCola_Metallic
+    second: {fileID: 2800000, guid: bba59c2081133e843afb2f6bd45da708, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongPuntaCola_Normal
+    second: {fileID: 2800000, guid: 023cec3ead9212146ad2d21c3e1e8d72, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: IdleDragon_phongPuntaCola_Roughness
+    second: {fileID: 2800000, guid: 16423d121710f0348a4ee1ba6ba9719f, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 1
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
