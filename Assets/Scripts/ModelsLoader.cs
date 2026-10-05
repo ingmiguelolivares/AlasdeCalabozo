@@ -2,6 +2,9 @@ using UnityEngine;
 using Photon.Pun;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class ModelsLoader : MonoBehaviourPun
 {
@@ -20,14 +23,55 @@ public class ModelsLoader : MonoBehaviourPun
     [Header("Punto de aparición")]
     public Transform spawnPoint;
 
+    [Header("Addressables")]
+    [SerializeField] bool loadAddressableModelsWhenArraysEmpty = true;
+    [SerializeField] string easyModelsLabel = "monsters_easy";
+    [SerializeField] string mediumModelsLabel = "monsters_medium";
+    [SerializeField] string hardModelsLabel = "monsters_hard";
+
     readonly Dictionary<string, GameObject> easyLookup = new();
     readonly Dictionary<string, GameObject> mediumLookup = new();
     readonly Dictionary<string, GameObject> hardLookup = new();
+    bool loadStarted;
+
+    public bool IsReady { get; private set; }
 
     void Awake()
     {
         if (Instance == null) Instance = this;
         else { Destroy(gameObject); return; }
+    }
+
+    IEnumerator Start()
+    {
+        yield return EnsureModelsLoaded();
+    }
+
+    public IEnumerator EnsureModelsLoaded()
+    {
+        if (IsReady)
+            yield break;
+
+        if (loadStarted)
+        {
+            while (!IsReady)
+                yield return null;
+            yield break;
+        }
+
+        loadStarted = true;
+
+        if (loadAddressableModelsWhenArraysEmpty)
+        {
+            if (easyModels == null || easyModels.Length == 0)
+                yield return LoadAddressableModels(easyModelsLabel, result => easyModels = result);
+
+            if (mediumModels == null || mediumModels.Length == 0)
+                yield return LoadAddressableModels(mediumModelsLabel, result => mediumModels = result);
+
+            if (hardModels == null || hardModels.Length == 0)
+                yield return LoadAddressableModels(hardModelsLabel, result => hardModels = result);
+        }
 
         if (easyModels == null || easyModels.Length == 0)
             easyModels = Resources.LoadAll<GameObject>("ModelosBichitos/Easy")
@@ -44,6 +88,27 @@ public class ModelsLoader : MonoBehaviourPun
         BuildLookup(easyModels, easyLookup);
         BuildLookup(mediumModels, mediumLookup);
         BuildLookup(hardModels, hardLookup);
+        IsReady = true;
+    }
+
+    static IEnumerator LoadAddressableModels(string label, System.Action<GameObject[]> assign)
+    {
+        if (string.IsNullOrWhiteSpace(label))
+            yield break;
+
+        AsyncOperationHandle<IList<GameObject>> handle = Addressables.LoadAssetsAsync<GameObject>(label, null);
+        yield return handle;
+
+        if (handle.Status == AsyncOperationStatus.Succeeded && handle.Result != null && handle.Result.Count > 0)
+        {
+            assign(handle.Result.Where(model => model != null).OrderBy(model => model.name).ToArray());
+        }
+        else
+        {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.LogWarning($"No se encontraron modelos Addressables con la etiqueta '{label}'.");
+#endif
+        }
     }
 
     static void BuildLookup(GameObject[] models, Dictionary<string, GameObject> lookup)

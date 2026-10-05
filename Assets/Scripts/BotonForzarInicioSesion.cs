@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BotonForzarInicioSesion : MonoBehaviour
 {
@@ -15,10 +14,10 @@ public class BotonForzarInicioSesion : MonoBehaviour
             Debug.Log("MapaManager destruido.");
         }
 
-        // (Opcional) Limpiar PlayerPrefs si están afectando el inicio
+        // Opcional: limpiar PlayerPrefs si afectan el inicio.
         // PlayerPrefs.DeleteAll();
 
         // Carga segura
-        SceneManager.LoadScene("IniciarSesion", LoadSceneMode.Single);
+        WebGLSceneLoader.Load(this, "IniciarSesion");
     }
 }

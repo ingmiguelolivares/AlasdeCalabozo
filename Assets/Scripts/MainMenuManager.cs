@@ -130,7 +130,7 @@ public class MainMenuManager : MonoBehaviourPunCallbacks
     void LoadSingleplayerScene()
     {
         txtEstado.text = "🎮 Iniciando Single Player…";
-        SceneManager.LoadScene("SinglePlayer");   // ajusta el nombre si difiere
+        WebGLSceneLoader.Load(this, "SinglePlayer");   // ajusta el nombre si difiere
     }
 
     void ToggleMultiplayerButtons(bool enable)

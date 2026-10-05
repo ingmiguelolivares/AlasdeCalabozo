@@ -81,6 +81,10 @@ public class TurnBasedGame : MonoBehaviourPunCallbacks
         if (IsSphinxScene && sphinxMgr == null)
             sphinxMgr = FindFirstObjectByType<SphinxQuestionManager>();
 
+        var modelsLoader = ModelsLoader.Instance;
+        if (!IsSphinxScene && modelsLoader != null)
+            yield return modelsLoader.EnsureModelsLoaded();
+
         isReady = true;
         if (pendingTurn != -1)
         {
@@ -388,7 +392,7 @@ public class TurnBasedGame : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(t);
         PhotonNetwork.AutomaticallySyncScene = false;
         PhotonNetwork.Disconnect();
-        SceneManager.LoadScene(scene);
+        WebGLSceneLoader.Load(this, scene);
     }
 
     [PunRPC]
@@ -403,7 +407,7 @@ public class TurnBasedGame : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(2f);
         PhotonNetwork.LeaveRoom();
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(scene);
+        yield return WebGLSceneLoader.LoadRoutine(scene);
     }
 
     // Función nueva que devuelve HP según dificultad

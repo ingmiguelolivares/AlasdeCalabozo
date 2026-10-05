@@ -15,11 +15,7 @@ public class NavegadorUI : MonoBehaviour
 
     IEnumerator CargarEscena(string nombre)
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nombre, LoadSceneMode.Single);
-        while (!asyncLoad.isDone)
-        {
-            yield return null; // Espera un frame
-        }
+        yield return WebGLSceneLoader.LoadRoutine(nombre, LoadSceneMode.Single);
     }
 
     public void MostrarPaso4()

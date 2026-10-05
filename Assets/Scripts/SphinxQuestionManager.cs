@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 [RequireComponent(typeof(PhotonView))]
 public class SphinxQuestionManager : MonoBehaviourPunCallbacks
@@ -23,19 +25,11 @@ public class SphinxQuestionManager : MonoBehaviourPunCallbacks
     private bool _correct;
     private int _currentActor;
 
-   void Start()
+   IEnumerator Start()
     {
         if (bank == null)
         {
-            bank = Resources.Load<SphinxQuestionBank>("SphinxQuestionBank");
-            if (bank == null)
-            {
-                Debug.LogError("❌ No se pudo cargar el banco desde Resources.");
-            }
-            else
-            {
-                Debug.Log($"✅ Banco cargado desde Resources: {bank.name}");
-            }
+            yield return LoadBank();
         }
         else
         {
@@ -44,6 +38,29 @@ public class SphinxQuestionManager : MonoBehaviourPunCallbacks
 
         if (questionText == null) Debug.LogWarning("⚠️ Falta referencia a questionText.");
         if (photonView == null) Debug.LogError("❌ No se encontró PhotonView en SphinxQuestionManager.");
+    }
+
+    IEnumerator LoadBank()
+    {
+        AsyncOperationHandle<SphinxQuestionBank> handle = Addressables.LoadAssetAsync<SphinxQuestionBank>("SphinxQuestionBank");
+        yield return handle;
+
+        if (handle.Status == AsyncOperationStatus.Succeeded && handle.Result != null)
+        {
+            bank = handle.Result;
+            Debug.Log($"✅ Banco cargado desde Addressables: {bank.name}");
+            yield break;
+        }
+
+        bank = Resources.Load<SphinxQuestionBank>("SphinxQuestionBank");
+        if (bank == null)
+        {
+            Debug.LogError("❌ No se pudo cargar el banco desde Addressables ni Resources.");
+        }
+        else
+        {
+            Debug.Log($"✅ Banco cargado desde Resources: {bank.name}");
+        }
     }
 
 

@@ -6,7 +6,7 @@ Fecha: 2026-10-05
 
 El problema principal no parece ser una sola opcion de Player Settings, sino la forma en que los assets se estan empaquetando para WebGL. El proyecto tiene muchos assets pesados en `Assets/`, pero Unity solo incluye en el build lo que esta referenciado por escenas, `Resources`, `StreamingAssets`, plugins del target y contenido incluido por Addressables. En este proyecto los riesgos mas claros para la primera carga son:
 
-- `Assets/Resources/CARTASAVESUNITY`: ~64 MB de imagenes dentro de `Resources`. Todo lo que esta en `Resources` queda disponible para el build base.
+- `Assets/Resources/CARTASAVESUNITY` tenia ~64 MB de imagenes dentro de `Resources`; ya fue movido a `Assets/AddressableContent/CARTASAVESUNITY`.
 - `Assets/StreamingAssets/Master.bank`: ~6.11 MB que WebGL debe publicar como archivo de runtime.
 - 15 escenas habilitadas en `ProjectSettings/EditorBuildSettings.asset`.
 - FMOD HTML5 activo: `Assets/Plugins/FMOD/platforms/html5/lib/3.1.39/libfmodstudio.a`.
@@ -18,26 +18,36 @@ El problema principal no parece ser una sola opcion de Player Settings, sino la 
 - `ProjectSettings/QualitySettings.asset`: WebGL paso del perfil `High` al perfil `Low` como calidad inicial.
 - `Assets/AddressableAssetsData/AddressableAssetSettings.asset`: `m_OptimizeCatalogSize` paso a `1`.
 - `Assets/AddressableAssetsData/AddressableAssetSettings.asset`: `m_BuildAddressablesWithPlayerBuild` paso a `1`.
+- `Assets/AddressableAssetsData/AddressableAssetSettings.asset`: `m_BuildRemoteCatalog` paso a `1`.
+- `ProjectSettings/ProjectSettings.asset`: `webGLNameFilesAsHashes` paso a `1` para facilitar cache inmutable en servidor.
+- `Assets/Resources/CARTASAVESUNITY` fue movido a `Assets/AddressableContent/CARTASAVESUNITY` preservando archivos `.meta`.
+- Se agregaron utilidades runtime en `Assets/Scripts/Optimization`.
+- Se agrego `Assets/Editor/WebGLOptimizationTools.cs` para configurar Addressables, texturas y audio desde Unity.
+- Se agregaron ejemplos de headers/configuracion en `webgl-server/` para Nginx, Apache, IIS y hosts compatibles con `_headers`, mas checklist en `docs/WEBGL_DEPLOYMENT.md`.
 
 Estos cambios son reversibles y no eliminan assets.
 
 ## Hallazgos principales
 
-### 1. `Resources` esta inflando el build inicial
+### 1. `Resources` estaba inflando el build inicial
 
-`Assets/Resources` pesa aproximadamente 64.12 MB. La mayor parte son cartas:
+`Assets/Resources` pesaba aproximadamente 64.12 MB. La mayor parte eran cartas que ahora viven en `Assets/AddressableContent/CARTASAVESUNITY`:
 
-- `Assets/Resources/CARTASAVESUNITY/TINGUA PICO VERDE.png`: ~3.21 MB
-- `Assets/Resources/CARTASAVESUNITY/AGUILA PESCADORA.png`: ~3.17 MB
-- `Assets/Resources/CARTASAVESUNITY/CARPINTERO AHUMADO.png`: ~3.14 MB
+- `Assets/AddressableContent/CARTASAVESUNITY/TINGUA PICO VERDE.png`: ~3.21 MB
+- `Assets/AddressableContent/CARTASAVESUNITY/AGUILA PESCADORA.png`: ~3.17 MB
+- `Assets/AddressableContent/CARTASAVESUNITY/CARPINTERO AHUMADO.png`: ~3.14 MB
 - Muchas otras cartas estan entre 2.9 MB y 3.1 MB.
 
 Ademas, hay copias muy parecidas en `Assets/ASSETS/00.CARTAS`, por lo que hay duplicacion en el repositorio y riesgo de duplicacion si ambas rutas son referenciadas por escenas.
 
-Recomendacion:
+Estado:
 
-- Sacar `CARTASAVESUNITY` de `Resources`.
-- Crear un grupo Addressables `Cards`.
+- `CARTASAVESUNITY` ya salio de `Resources`.
+- `Assets/Resources` queda en ~1.79 MB.
+- El grupo Addressables remoto se prepara desde `Tools > WebGL Optimization > Prepare Project For WebGL`.
+
+Recomendacion pendiente:
+
 - Cargar cartas por demanda en la escena `Cartas`, no durante la carga inicial del juego.
 - Bajar import settings WebGL de esas imagenes a 1024 px o menos si se muestran como cartas UI.
 - Activar `Crunch Compression` o usar formatos WebGL adecuados segun calidad visual requerida.
@@ -124,7 +134,7 @@ Recomendacion:
 1. Hacer un build WebGL con `Development Build` desactivado y `Compression Format = Brotli`.
 2. Revisar el Build Report / WebGL build size analyzer.
 3. Priorizar los 20 assets mas grandes que realmente aparezcan en el `.data`.
-4. Migrar primero `Resources/CARTASAVESUNITY` a Addressables.
+4. Ejecutar `Tools > WebGL Optimization > Prepare Project For WebGL` dentro de Unity para registrar las cartas como Addressables y reimportar texturas/audio.
 5. Luego migrar monstruos/audio por escena o por dificultad.
 
 ## Meta inicial

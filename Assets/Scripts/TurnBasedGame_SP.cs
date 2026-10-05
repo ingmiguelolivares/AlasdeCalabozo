@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;  // <-- ¡Importante para cargar escenas!
 using FMODUnity;
+using System.Collections;
 
 /// Combate local single-player: 1 jugador vs 3 monstruos
 /// HP jugador = 38 ; HP monstruos = 6, 12, 20 ; solo botón ATACAR.
@@ -32,12 +33,16 @@ public class TurnBasedGame_SP : MonoBehaviour
     int enemyHP = 0;
 
     /* ---------- Inicio ---------- */
-    void Start()
+    IEnumerator Start()
     {
         playerHealthSlider.maxValue = playerHP;
         playerHealthSlider.value = playerHP;
 
         attackButton.onClick.AddListener(PlayerAttack);
+
+        var loader = ModelsLoader.Instance;
+        if (loader != null)
+            yield return loader.EnsureModelsLoaded();
 
         SpawnMonster();
     }
@@ -119,7 +124,7 @@ public class TurnBasedGame_SP : MonoBehaviour
         {
             Log("¡Has vencido a los 3 monstruos! ¡Victoria total!");
             attackButton.interactable = false;
-            SceneManager.LoadScene("Victoria"); // <-- Cambia a la escena de victoria
+            WebGLSceneLoader.Load(this, "Victoria"); // <-- Cambia a la escena de victoria
         }
         else
         {
@@ -131,7 +136,7 @@ public class TurnBasedGame_SP : MonoBehaviour
     {
         Log("Has sido derrotado. GAME OVER.");
         attackButton.interactable = false;
-        SceneManager.LoadScene("Perdiste"); // <-- Cambia a la escena de derrota
+        WebGLSceneLoader.Load(this, "Perdiste"); // <-- Cambia a la escena de derrota
     }
 
     /* ---------- Helper ---------- */

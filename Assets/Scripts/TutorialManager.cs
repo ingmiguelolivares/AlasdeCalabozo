@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -14,6 +13,6 @@ public class TutorialManager : MonoBehaviour
 
     public void RegresarAlMenu()
     {
-        SceneManager.LoadScene("MenuPrincipal");
+        WebGLSceneLoader.Load(this, "MenuPrincipal");
     }
 }
