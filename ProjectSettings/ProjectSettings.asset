@@ -841,7 +841,7 @@ PlayerSettings:
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
   webGLTemplate: APPLICATION:Minimal
-  webGLAnalyzeBuildSize: 0
+  webGLAnalyzeBuildSize: 1
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 2
   webGLWasmArithmeticExceptions: 0
