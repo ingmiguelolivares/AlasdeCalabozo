@@ -6,12 +6,15 @@
 	using UnityEditor.IMGUI.Controls;
 	using UnityEditor;
 	using Mapbox.Unity.Map;
+	using UITreeView = UnityEditor.IMGUI.Controls.TreeView<int>;
+	using UITreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<int>;
+	using UITreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 
-	public class VectorSubLayerTreeView : TreeView
+	public class VectorSubLayerTreeView : UITreeView
 	{
 		public SerializedProperty Layers;
 
-		public VectorSubLayerTreeView(TreeViewState state)
+		public VectorSubLayerTreeView(UITreeViewState state)
 			: base(state)
 		{
 			showAlternatingRowBackgrounds = true;
@@ -19,12 +22,12 @@
 			Reload();
 		}
 
-		protected override TreeViewItem BuildRoot()
+		protected override UITreeViewItem BuildRoot()
 		{
 			// The root item is required to have a depth of -1, and the rest of the items increment from that.
-			var root = new TreeViewItem { id = -1, depth = -1, displayName = "Root" };
+			var root = new UITreeViewItem { id = -1, depth = -1, displayName = "Root" };
 
-			var items = new List<TreeViewItem>();
+			var items = new List<UITreeViewItem>();
 			var index = 0;
 
 			if (Layers != null)
@@ -32,7 +35,7 @@
 				for (int i = 0; i < Layers.arraySize; i++)
 				{
 					var name = Layers.GetArrayElementAtIndex(i).FindPropertyRelative("coreOptions.sublayerName").stringValue;
-					items.Add(new TreeViewItem { id = index, depth = 0, displayName = name });
+					items.Add(new UITreeViewItem { id = index, depth = 0, displayName = name });
 					index++;
 				}
 			}
@@ -44,7 +47,7 @@
 			return root;
 		}
 
-		protected override bool CanRename(TreeViewItem item)
+		protected override bool CanRename(UITreeViewItem item)
 		{
 			return true;
 		}

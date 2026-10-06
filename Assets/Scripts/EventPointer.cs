@@ -16,6 +16,14 @@ public class EventPointer : MonoBehaviour
     public int eventID;
     [SerializeField] private MenuUIManager menuUIManager;
     [SerializeField] private EventManager eventManager;
+    private SpawnOnMap spawner;
+    private GameObject pyramidRoot;
+
+    public void SetSpawner(SpawnOnMap owner, GameObject root)
+    {
+        spawner = owner;
+        pyramidRoot = root;
+    }
 
     void Start()
     {
@@ -101,5 +109,9 @@ public class EventPointer : MonoBehaviour
         }
 
         menuUIManager.DisplayStartEventPanel(eventID);
+        if (spawner != null)
+        {
+            spawner.ConsumePyramid(pyramidRoot != null ? pyramidRoot : gameObject);
+        }
     }
 }

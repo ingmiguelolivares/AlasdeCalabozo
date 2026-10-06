@@ -5,6 +5,8 @@
 	using UnityEditor.IMGUI.Controls;
 	using UnityEditor;
 	using Mapbox.Unity.Map;
+	using UITreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<int>;
+	using UITreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 
 	internal class FeatureSubLayerTreeView : TreeViewWithTreeModel<FeatureTreeElement>
 	{
@@ -27,7 +29,7 @@
 			normal = new GUIStyleState() { textColor = Color.white }
 		};
 
-		public FeatureSubLayerTreeView(TreeViewState state, MultiColumnHeader multicolumnHeader, TreeModel<FeatureTreeElement> model, int uniqueIdentifier = 3000) : base(state, multicolumnHeader, model)
+		public FeatureSubLayerTreeView(UITreeViewState state, MultiColumnHeader multicolumnHeader, TreeModel<FeatureTreeElement> model, int uniqueIdentifier = 3000) : base(state, multicolumnHeader, model)
 		{
 			showAlternatingRowBackgrounds = true;
 			showBorder = true;
@@ -37,7 +39,7 @@
 			Reload();
 		}
 
-		protected override bool CanRename(TreeViewItem item)
+		protected override bool CanRename(UITreeViewItem item)
 		{
 			// Only allow rename if we can show the rename overlay with a certain width (label might be clipped by other columns)
 			Rect renameRect = GetRenameRect(treeViewRect, 0, item);
@@ -62,7 +64,7 @@
 			}
 		}
 
-		protected override Rect GetRenameRect(Rect rowRect, int row, TreeViewItem item)
+		protected override Rect GetRenameRect(Rect rowRect, int row, UITreeViewItem item)
 		{
 			Rect cellRect = GetCellRectForTreeFoldouts(rowRect);
 			cellRect.xMin = nameOffset;

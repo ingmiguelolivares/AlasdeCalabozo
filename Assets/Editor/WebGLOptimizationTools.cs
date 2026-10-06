@@ -80,9 +80,9 @@ public static class WebGLOptimizationTools
             settings.compressionFormat = AudioCompressionFormat.Vorbis;
             settings.quality = size > 5 * 1024 * 1024 ? 0.55f : 0.65f;
             settings.loadType = size > 5 * 1024 * 1024 ? AudioClipLoadType.Streaming : AudioClipLoadType.CompressedInMemory;
+            settings.preloadAudioData = false;
 
             importer.defaultSampleSettings = settings;
-            importer.preloadAudioData = false;
             importer.loadInBackground = true;
 
             EditorUtility.SetDirty(importer);

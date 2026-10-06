@@ -55,6 +55,7 @@ namespace FMODUnity
 
         protected bool isOverlayEnabled = false;
         private FMODRuntimeManagerOnGUIHelper overlayDrawer = null;
+        private const int DebugOverlayWindowId = 0x464D4F44;
         private Rect windowRect = new Rect(10, 10, 300, 100);
 
         private string lastDebugText;
@@ -663,7 +664,7 @@ retry:
                 debugStyle.fontSize = currentPlatform.OverlayFontSize;
                 if (studioSystem.isValid() && isOverlayEnabled)
                 {
-                    windowRect = GUI.Window(GetInstanceID(), windowRect, DrawDebugOverlay, "FMOD Studio Debug", debugStyle);
+                    windowRect = GUI.Window(DebugOverlayWindowId, windowRect, DrawDebugOverlay, "FMOD Studio Debug", debugStyle);
                 }
             }
             else

@@ -103,7 +103,7 @@ namespace Mapbox.Editor
 
 		public override void OnInspectorGUI()
 		{
-			objectId = serializedObject.targetObject.GetInstanceID().ToString();
+			objectId = serializedObject.targetObject.GetEntityId().ToString();
 			serializedObject.Update();
 			EditorGUILayout.BeginVertical();
 			EditorGUILayout.Space();

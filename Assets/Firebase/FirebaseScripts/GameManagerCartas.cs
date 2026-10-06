@@ -3,6 +3,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GameManagerCartas : MonoBehaviour
 {
@@ -56,17 +61,19 @@ PlayerPrefs.Save();
 
             // Mostramos la carta en la UI
             textoMensajeCartaDesbloqueada.text = "¡Has liberado un Ave! " + cartaDesbloqueada + "!";
-            Sprite cartaSprite = Resources.Load<Sprite>("CARTASAVESUNITY/" + cartaDesbloqueada); // Cargar la imagen
-            print("CARTASAVESUNITY/" + cartaDesbloqueada);
-            if (cartaSprite != null)
+            print("Carta Addressable: " + cartaDesbloqueada);
+            CardSpriteProvider.Load(cartaDesbloqueada, cartaSprite =>
             {
-                // Instanciar la carta dentro del Canvas
-                InstanciarCarta(cartaDesbloqueada);
-            }
-            else
-            {
-                Debug.Log("Imagen no encontrada para la carta: " + cartaDesbloqueada);
-            }
+                if (cartaSprite != null)
+                {
+                    // Instanciar la carta dentro del Canvas
+                    InstanciarCarta(cartaDesbloqueada, cartaSprite);
+                }
+                else
+                {
+                    Debug.Log("Imagen no encontrada para la carta: " + cartaDesbloqueada);
+                }
+            });
 
             // Verificamos si todas las cartas han sido desbloqueadas
             VerificarCartasDesbloqueadas(); // Llamamos a esta funci�n para verificar si el jugador ha desbloqueado todas las cartas
@@ -77,7 +84,7 @@ PlayerPrefs.Save();
     }
 
     // Instanciar la carta dentro del Canvas
-    private void InstanciarCarta(string cartaDesbloqueada)
+    private void InstanciarCarta(string cartaDesbloqueada, Sprite cartaSprite)
     {
         // Instanciamos el prefab de la carta
         GameObject nuevaCarta = Instantiate(cartaPrefab, canvasTransform);
@@ -86,8 +93,6 @@ PlayerPrefs.Save();
         Image imagenCarta = nuevaCarta.GetComponent<Image>();
         if (imagenCarta != null)
         {
-            // Cargar la imagen de la carta desde Resources
-            Sprite cartaSprite = Resources.Load<Sprite>("CARTASAVESUNITY/" + cartaDesbloqueada);
             if (cartaSprite != null)
             {
                 imagenCarta.sprite = cartaSprite; // Asignar la imagen al componente Image
@@ -156,15 +161,17 @@ public void VerificarCartasDesbloqueadas()
             GameObject imagenFelicidades = Instantiate(imagenFelicidadesPrefab, canvasTransform);
 
             // Asignar la imagen de Felicidades
-            Sprite felicidadesSprite = Resources.Load<Sprite>("CARTASAVESUNITY/Felicidades");
-            if (felicidadesSprite != null)
+            CardSpriteProvider.Load("FELICIDADES", felicidadesSprite =>
             {
-                imagenFelicidades.GetComponent<Image>().sprite = felicidadesSprite; // Asignar la imagen de Felicidades al componente Image
-            }
-            else
-            {
-                Debug.LogWarning("Imagen de Felicidades no encontrada.");
-            }
+                if (felicidadesSprite != null)
+                {
+                    imagenFelicidades.GetComponent<Image>().sprite = felicidadesSprite; // Asignar la imagen de Felicidades al componente Image
+                }
+                else
+                {
+                    Debug.LogWarning("Imagen de Felicidades no encontrada.");
+                }
+            });
         }
         else
         {
@@ -252,5 +259,104 @@ public void VerificarCartasDesbloqueadas()
     void CargarInventario()
     {
         SceneManager.LoadScene("Cartas");
+    }
+}
+
+public static class CardSpriteProvider
+{
+    const string ResourcesCardsPath = "CARTASAVESUNITY/";
+
+    public static void Load(string cardName, System.Action<Sprite> onLoaded)
+    {
+#if UNITY_EDITOR
+        Sprite editorSprite = LoadEditorSprite(GetResourceName(cardName));
+        if (editorSprite != null)
+        {
+            onLoaded?.Invoke(editorSprite);
+            return;
+        }
+#endif
+
+        LoadAddress(cardName, GetAddressCandidates(cardName), 0, onLoaded);
+    }
+
+    static void LoadAddress(string cardName, string[] candidates, int index, System.Action<Sprite> onLoaded)
+    {
+        if (index >= candidates.Length)
+        {
+            string resourceName = GetResourceName(cardName);
+#if UNITY_EDITOR
+            Sprite editorSprite = LoadEditorSprite(resourceName);
+            if (editorSprite != null)
+            {
+                onLoaded?.Invoke(editorSprite);
+                return;
+            }
+#endif
+
+            Sprite resourceSprite = Resources.Load<Sprite>(ResourcesCardsPath + resourceName);
+            if (resourceSprite == null)
+            {
+                resourceSprite = Resources.Load<Sprite>(ResourcesCardsPath + cardName);
+            }
+
+            onLoaded?.Invoke(resourceSprite);
+            return;
+        }
+
+        string address = candidates[index];
+        AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(address);
+        handle.Completed += completedHandle =>
+        {
+            if (completedHandle.Status == AsyncOperationStatus.Succeeded && completedHandle.Result != null)
+            {
+                onLoaded?.Invoke(completedHandle.Result);
+                return;
+            }
+
+            Addressables.Release(completedHandle);
+            LoadAddress(cardName, candidates, index + 1, onLoaded);
+        };
+    }
+
+#if UNITY_EDITOR
+    static Sprite LoadEditorSprite(string resourceName)
+    {
+        string[] extensions = { ".png", ".jpg", ".jpeg" };
+        foreach (string extension in extensions)
+        {
+            string path = "Assets/AddressableContent/CARTASAVESUNITY/" + resourceName + extension;
+            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            if (sprite != null)
+            {
+                return sprite;
+            }
+        }
+
+        return null;
+    }
+#endif
+
+    static string[] GetAddressCandidates(string cardName)
+    {
+        string resourceName = GetResourceName(cardName);
+        return new string[]
+        {
+            resourceName,
+            cardName,
+            "Assets/AddressableContent/CARTASAVESUNITY/" + resourceName + ".png",
+            "Assets/AddressableContent/CARTASAVESUNITY/" + resourceName + ".jpg",
+            "Assets/AddressableContent/CARTASAVESUNITY/" + resourceName + ".jpeg"
+        };
+    }
+
+    static string GetResourceName(string cardName)
+    {
+        if (string.Equals(cardName, "FELICIDADES", System.StringComparison.OrdinalIgnoreCase))
+        {
+            return "Felicidades";
+        }
+
+        return cardName;
     }
 }

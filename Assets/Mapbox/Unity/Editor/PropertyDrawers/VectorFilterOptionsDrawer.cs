@@ -38,7 +38,7 @@
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
-			objectId = property.serializedObject.targetObject.GetInstanceID().ToString();
+			objectId = property.serializedObject.targetObject.GetEntityId().ToString();
 			VectorFilterOptions options = (VectorFilterOptions)EditorHelper.GetTargetObjectOfProperty(property);
 
 			showFilters = EditorGUILayout.Foldout(showFilters, new GUIContent { text = "Filters", tooltip = "Filter features in a vector layer based on criterion specified.  " });

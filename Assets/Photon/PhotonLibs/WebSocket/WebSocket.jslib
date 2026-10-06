@@ -1,5 +1,28 @@
 var LibraryWebSockets = {
 $webSocketInstances: [],
+$webSocketDynCall: function(signature, callback)
+{
+    var args = Array.prototype.slice.call(arguments, 2);
+    var dynCall = Module['dynCall_' + signature];
+    if (dynCall)
+    {
+        return dynCall.apply(null, [callback].concat(args));
+    }
+
+    var table = typeof wasmTable !== 'undefined' ? wasmTable : Module['wasmTable'];
+    var wasmFunction = table && table.get(callback);
+    if (wasmFunction)
+    {
+        return wasmFunction.apply(null, args);
+    }
+
+    if (typeof getWasmTableEntry === 'function')
+    {
+        return getWasmTableEntry(callback).apply(null, args);
+    }
+
+    throw new Error('Unable to invoke WebSocket callback with signature ' + signature);
+},
 
 SocketCreate: function(url, protocols, openCallback, recvCallback, errorCallback, closeCallback)
 {
@@ -13,8 +36,7 @@ SocketCreate: function(url, protocols, openCallback, recvCallback, errorCallback
     socket.socket.binaryType = 'arraybuffer';
     
     socket.socket.onopen = function () {
-    Module.dynCall_
-        Module.dynCall_vi(openCallback, instance);
+        webSocketDynCall('vi', openCallback, instance);
     }
     socket.socket.onmessage = function (e) {
         if (e.data instanceof ArrayBuffer)
@@ -23,17 +45,17 @@ SocketCreate: function(url, protocols, openCallback, recvCallback, errorCallback
             const ptr = _malloc(b.byteLength);
             const dataHeap = new Int8Array(HEAPU8.buffer, ptr, b.byteLength);
             dataHeap.set(new Int8Array(b));
-            Module.dynCall_viii(recvCallback, instance, ptr, b.byteLength);
+            webSocketDynCall('viii', recvCallback, instance, ptr, b.byteLength);
             _free(ptr);
         }
     };
     socket.socket.onerror = function (e) {
-        Module.dynCall_vii(errorCallback, instance, e.code);
+        webSocketDynCall('vii', errorCallback, instance, e.code || 0);
     }
     socket.socket.onclose = function (e) {
         if (e.code != 1000)
         {
-            Module.dynCall_vii(closeCallback, instance, e.code);
+            webSocketDynCall('vii', closeCallback, instance, e.code || 0);
         }
     }
     return instance;
@@ -68,4 +90,5 @@ SocketClose: function (socketInstance)
 };
 
 autoAddDeps(LibraryWebSockets, '$webSocketInstances');
+autoAddDeps(LibraryWebSockets, '$webSocketDynCall');
 mergeInto(LibraryManager.library, LibraryWebSockets);

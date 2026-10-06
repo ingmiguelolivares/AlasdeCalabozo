@@ -657,7 +657,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 6417039232392872563}
   cacheVersion: 131847
-  cacheTime: 638835581280000000
+  cacheTime: 639267901243866689
   SerializableEventsDict:
   - key: event:/Atack
     index: 0
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   Path: Assets/ImaginatioSound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638835581280000000
+  lastModified: 639267901243866689
   FileSizes:
   - Name: Desktop
     Value: 2590
@@ -1181,7 +1181,7 @@ MonoBehaviour:
   Path: Assets/ImaginatioSound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638835581280000000
+  lastModified: 639267901243856664
   FileSizes:
   - Name: Desktop
     Value: 6410464

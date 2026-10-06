@@ -6,8 +6,11 @@ namespace Mapbox.Editor
 	using UnityEditor;
 	using UnityEditor.IMGUI.Controls;
 	using UnityEngine;
+	using UITreeView = UnityEditor.IMGUI.Controls.TreeView<int>;
+	using UITreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<int>;
+	using UITreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 
-	internal class TreeViewItem<T> : TreeViewItem where T : TreeElement
+	internal class TreeViewItem<T> : UITreeViewItem where T : TreeElement
 	{
 		public T data { get; set; }
 
@@ -17,22 +20,22 @@ namespace Mapbox.Editor
 		}
 	}
 
-	internal class TreeViewWithTreeModel<T> : TreeView where T : TreeElement
+	internal class TreeViewWithTreeModel<T> : UITreeView where T : TreeElement
 	{
 		TreeModel<T> m_TreeModel;
-		readonly List<TreeViewItem> m_Rows = new List<TreeViewItem>(100);
+		readonly List<UITreeViewItem> m_Rows = new List<UITreeViewItem>(100);
 		public event Action treeChanged;
 
 		public TreeModel<T> treeModel { get { return m_TreeModel; } }
-		public event Action<IList<TreeViewItem>>  beforeDroppingDraggedItems;
+		public event Action<IList<UITreeViewItem>>  beforeDroppingDraggedItems;
 
 
-		public TreeViewWithTreeModel (TreeViewState state, TreeModel<T> model) : base (state)
+		public TreeViewWithTreeModel (UITreeViewState state, TreeModel<T> model) : base (state)
 		{
 			Init (model);
 		}
 
-		public TreeViewWithTreeModel (TreeViewState state, MultiColumnHeader multiColumnHeader, TreeModel<T> model) : base(state, multiColumnHeader)
+		public TreeViewWithTreeModel (UITreeViewState state, MultiColumnHeader multiColumnHeader, TreeModel<T> model) : base(state, multiColumnHeader)
 		{
 			Init (model);
 		}
@@ -51,13 +54,13 @@ namespace Mapbox.Editor
 			Reload ();
 		}
 
-		protected override TreeViewItem BuildRoot()
+		protected override UITreeViewItem BuildRoot()
 		{
 			int depthForHiddenRoot = -1;
 			return new TreeViewItem<T>(m_TreeModel.root.id, depthForHiddenRoot, m_TreeModel.root.name, m_TreeModel.root);
 		}
 
-		protected override IList<TreeViewItem> BuildRows (TreeViewItem root)
+		protected override IList<UITreeViewItem> BuildRows (UITreeViewItem root)
 		{
 			if (m_TreeModel.root == null)
 			{
@@ -82,7 +85,7 @@ namespace Mapbox.Editor
 			return m_Rows;
 		}
 
-		void AddChildrenRecursive (T parent, int depth, IList<TreeViewItem> newRows)
+		void AddChildrenRecursive (T parent, int depth, IList<UITreeViewItem> newRows)
 		{
 			foreach (T child in parent.children)
 			{
@@ -103,7 +106,7 @@ namespace Mapbox.Editor
 			}
 		}
 
-		void Search(T searchFromThis, string search, List<TreeViewItem> result)
+		void Search(T searchFromThis, string search, List<UITreeViewItem> result)
 		{
 			if (string.IsNullOrEmpty(search))
 				throw new ArgumentException("Invalid search: cannot be null or empty", "search");
@@ -133,7 +136,7 @@ namespace Mapbox.Editor
 			SortSearchResult(result);
 		}
 
-		protected virtual void SortSearchResult (List<TreeViewItem> rows)
+		protected virtual void SortSearchResult (List<UITreeViewItem> rows)
 		{
 			rows.Sort ((x,y) => EditorUtility.NaturalCompare (x.displayName, y.displayName)); // sort by displayName by default, can be overriden for multicolumn solutions
 		}
@@ -175,7 +178,7 @@ namespace Mapbox.Editor
 		protected override DragAndDropVisualMode HandleDragAndDrop (DragAndDropArgs args)
 		{
 			// Check if we can handle the current drag data (could be dragged in from other areas/windows in the editor)
-			var draggedRows = DragAndDrop.GetGenericData(k_GenericDragID) as List<TreeViewItem>;
+			var draggedRows = DragAndDrop.GetGenericData(k_GenericDragID) as List<UITreeViewItem>;
 			if (draggedRows == null)
 				return DragAndDropVisualMode.None;
 
@@ -207,7 +210,7 @@ namespace Mapbox.Editor
 			}
 		}
 
-		public virtual void OnDropDraggedElementsAtIndex (List<TreeViewItem> draggedRows, T parent, int insertIndex)
+		public virtual void OnDropDraggedElementsAtIndex (List<UITreeViewItem> draggedRows, T parent, int insertIndex)
 		{
 			if (beforeDroppingDraggedItems != null)
 				beforeDroppingDraggedItems (draggedRows);
@@ -222,9 +225,9 @@ namespace Mapbox.Editor
 		}
 
 
-		bool ValidDrag(TreeViewItem parent, List<TreeViewItem> draggedItems)
+		bool ValidDrag(UITreeViewItem parent, List<UITreeViewItem> draggedItems)
 		{
-			TreeViewItem currentParent = parent;
+			UITreeViewItem currentParent = parent;
 			while (currentParent != null)
 			{
 				if (draggedItems.Contains(currentParent))

@@ -57,7 +57,7 @@
 
 		public void DrawUI(SerializedProperty property)
 		{
-			objectId = property.serializedObject.targetObject.GetInstanceID().ToString();
+			objectId = property.serializedObject.targetObject.GetEntityId().ToString();
 			var layerSourceProperty = property.FindPropertyRelative("sourceOptions");
 			var sourceTypeProperty = property.FindPropertyRelative("_sourceType");
 

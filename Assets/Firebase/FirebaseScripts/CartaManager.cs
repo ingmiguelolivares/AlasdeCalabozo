@@ -52,18 +52,18 @@ private void Start()
                 // Aseguramos que la carta tenga el tamaño adecuado
                 cartaUI.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 300);
 
-                // Cargar la imagen de la carta desde Resources
                 string cartaNombre = carta.Key;
-                Sprite cartaSprite = Resources.Load<Sprite>("CARTASAVESUNITY/" + cartaNombre);
-
-                if (cartaSprite != null)
+                CardSpriteProvider.Load(cartaNombre, cartaSprite =>
                 {
-                    cartaUI.GetComponent<Image>().sprite = cartaSprite;
-                }
-                else
-                {
-                    Debug.LogWarning("Imagen no encontrada para la carta: " + cartaNombre);
-                }
+                    if (cartaSprite != null)
+                    {
+                        cartaUI.GetComponent<Image>().sprite = cartaSprite;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Imagen no encontrada para la carta: " + cartaNombre);
+                    }
+                });
 
                 // Asignar texto
                 TextMeshProUGUI texto = cartaUI.GetComponentInChildren<TextMeshProUGUI>();
@@ -102,8 +102,9 @@ private void Start()
         {
             GameObject cartaUI = Instantiate(cartaPrefab, contenedorCartas);
             cartaUI.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 300);
-             print("CARTASAVESUNITY/" + cartaNombre);
-            Sprite cartaSprite = Resources.Load<Sprite>("CARTASAVESUNITY/" + cartaNombre);
+             print("Carta Addressable: " + cartaNombre);
+            CardSpriteProvider.Load(cartaNombre, cartaSprite =>
+            {
                 if (cartaSprite != null)
                 {
                     cartaUI.GetComponent<Image>().sprite = cartaSprite;
@@ -113,6 +114,7 @@ private void Start()
                 {
                     Debug.Log("Imagen no encontrada para la carta: " + cartaNombre);
                 }
+            });
 
             TextMeshProUGUI texto = cartaUI.GetComponentInChildren<TextMeshProUGUI>();
             if (texto != null)
