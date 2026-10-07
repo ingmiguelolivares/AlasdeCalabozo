@@ -21,6 +21,7 @@ public class SphinxQuestionManager : MonoBehaviourPunCallbacks
 
     [Header("Refs")]
     public TurnBasedGame turnMgr;
+    [SerializeField] bool showBirdCardHints = true;
 
     private bool _correct;
     private int _currentActor;
@@ -90,7 +91,7 @@ public class SphinxQuestionManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void RpcSendQuestion(string q, bool answer)
     {
-        questionText.text = q;
+        questionText.text = showBirdCardHints ? q + "\n\nPista de carta: " + BirdCardProgress.GetSphinxHint() : q;
         _correct = answer;
         Debug.Log($"📘 Pregunta recibida: {q} (Respuesta: {answer})");
     }

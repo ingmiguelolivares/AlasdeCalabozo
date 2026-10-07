@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Escenas
   m_GUID: 479c732b5959347d1b6f1b30c06cc4ff
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 77c12004bc86ff54cae6a10bd9a934ee
+    m_Address: Assets/Dados/D6/MateD6.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 45520fd9274cb4fd6a3ec2f55ef76288, type: 2}
   m_SchemaSet:
