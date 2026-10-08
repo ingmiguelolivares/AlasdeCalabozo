@@ -38,6 +38,7 @@ namespace Mapbox.Examples
         readonly List<GameObject> _spawnedObjects = new List<GameObject>();
         AbstractLocationProvider _locationProvider;
         bool _mapInitialized;
+        bool _useScenePlayerPositionFallback;
         int _nextEventId = 1;
 
         void Start()
@@ -148,6 +149,17 @@ namespace Mapbox.Examples
             EnsurePyramidCount();
         }
 
+        public void UseScenePlayerPositionFallback()
+        {
+            _useScenePlayerPositionFallback = true;
+            EnsurePyramidCount();
+        }
+
+        public bool TryGetCurrentUserLocation(out Vector2d userLocation)
+        {
+            return TryGetUserLocation(out userLocation);
+        }
+
         void EnsurePyramidCount()
         {
             Vector2d userLocation;
@@ -174,7 +186,28 @@ namespace Mapbox.Examples
 
         bool TryGetUserLocation(out Vector2d userLocation)
         {
-#if UNITY_EDITOR
+            if (_useScenePlayerPositionFallback)
+            {
+                return TryGetScenePlayerLocation(out userLocation);
+            }
+
+            if (_locationProvider == null)
+            {
+                return TryGetScenePlayerLocation(out userLocation);
+            }
+
+            Location location = _locationProvider.CurrentLocation;
+            userLocation = location.LatitudeLongitude;
+            if (location.IsLocationServiceEnabled && !userLocation.Equals(Vector2d.zero))
+            {
+                return true;
+            }
+
+            return TryGetScenePlayerLocation(out userLocation);
+        }
+
+        bool TryGetScenePlayerLocation(out Vector2d userLocation)
+        {
             if (jugador == null)
             {
                 GameObject playerTarget = GameObject.Find("PlayerTarget");
@@ -184,22 +217,14 @@ namespace Mapbox.Examples
                 }
             }
 
-            if (jugador != null && _map != null)
+            if (jugador != null && _map != null && _mapInitialized)
             {
                 userLocation = _map.WorldToGeoPosition(jugador.position);
                 return !userLocation.Equals(Vector2d.zero);
             }
-#endif
 
-            if (_locationProvider == null)
-            {
-                userLocation = Vector2d.zero;
-                return false;
-            }
-
-            Location location = _locationProvider.CurrentLocation;
-            userLocation = location.LatitudeLongitude;
-            return location.IsLocationServiceEnabled && !userLocation.Equals(Vector2d.zero);
+            userLocation = Vector2d.zero;
+            return false;
         }
 
         void RemovePyramidsOutsideSpawnRadius(Vector2d userLocation)

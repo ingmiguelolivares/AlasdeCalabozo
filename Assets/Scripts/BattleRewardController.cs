@@ -12,12 +12,22 @@ public class BattleRewardController : MonoBehaviour
         rewardText = text;
     }
 
-    public IEnumerator GrantReward(int battleIndex)
+    public IEnumerator GrantReward(int battleIndex, bool unlockCard)
     {
         BirdCardReward reward = BirdCardProgress.GetRewardForBattle(battleIndex);
         BirdCardProgress.RegisterBirdCard(reward);
 
-        string message = "Carta obtenida:\n" + reward.ToRewardText();
+        string message;
+        if (unlockCard)
+        {
+            BirdCardProgress.UnlockCard(reward.commonName);
+            message = string.Format("Carta de ave desbloqueada: {0}\nDato: {1}", reward.commonName, reward.curiousFact);
+        }
+        else
+        {
+            message = string.Format("Informacion de ave: {0}\nPista: {1}", reward.commonName, reward.sphinxClue);
+        }
+
         Debug.Log("[BattleReward] " + message);
 
         if (rewardText != null)

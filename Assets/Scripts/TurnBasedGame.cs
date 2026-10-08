@@ -83,7 +83,7 @@ public class TurnBasedGame : MonoBehaviourPunCallbacks
 
         var modelsLoader = ModelsLoader.Instance;
         if (!IsSphinxScene && modelsLoader != null)
-            yield return modelsLoader.EnsureModelsLoaded();
+            yield return modelsLoader.EnsureModelsLoaded(currentMonster);
 
         isReady = true;
         if (pendingTurn != -1)
@@ -300,8 +300,15 @@ public class TurnBasedGame : MonoBehaviourPunCallbacks
 
     void SpawnMonster()
     {
+        StartCoroutine(SpawnMonsterRoutine());
+    }
+
+    IEnumerator SpawnMonsterRoutine()
+    {
         var loader = ModelsLoader.Instance;
-        if (loader == null) { Debug.LogError("❌ Falta ModelsLoader"); return; }
+        if (loader == null) { Debug.LogError("❌ Falta ModelsLoader"); yield break; }
+
+        yield return loader.EnsureModelsLoaded(currentMonster);
 
         GameObject[] src = currentMonster switch
         {
@@ -310,7 +317,7 @@ public class TurnBasedGame : MonoBehaviourPunCallbacks
             2 => loader.hardModels,
             _ => null
         };
-        if (src == null || src.Length == 0) { Debug.LogError("❌ Array vacío"); return; }
+        if (src == null || src.Length == 0) { Debug.LogError("❌ Array vacío"); yield break; }
 
         GameObject chosen = src[Random.Range(0, src.Length)];
         string prefabName = chosen.name;

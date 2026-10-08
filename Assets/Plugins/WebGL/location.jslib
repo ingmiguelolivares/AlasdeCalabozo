@@ -9,10 +9,12 @@ mergeInto(LibraryManager.library, {
         },
         function (error) {
           console.error("❌ Error al obtener ubicación:", error.message);
+          SendMessage("Map", "OnLocationFailed", error.message || "unknown");
         }
       );
     } else {
       console.error("❌ Geolocalización no es compatible en este navegador.");
+      SendMessage("Map", "OnLocationFailed", "geolocation-not-supported");
     }
   }
 });

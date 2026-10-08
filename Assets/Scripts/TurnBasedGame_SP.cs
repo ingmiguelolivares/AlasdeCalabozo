@@ -4,6 +4,7 @@ using TMPro;
 using FMODUnity;
 using System.Collections;
 
+[RequireComponent(typeof(DiceThrowController))]
 public class TurnBasedGame_SP : MonoBehaviour
 {
     enum CombatInputState { Ready, Aiming, Resolving, Reward }
@@ -16,8 +17,6 @@ public class TurnBasedGame_SP : MonoBehaviour
 
     [Header("Dados y precision")]
     [SerializeField] PrecisionSliderController precisionSlider;
-    [SerializeField] PrecisionSliderController defenseSlider;
-    [SerializeField] Button defenseButton;
     [SerializeField] TMP_Text diceResultText;
     [SerializeField] TMP_Text rewardText;
     [SerializeField] DiceBattleConfig[] battleConfigs;
@@ -27,6 +26,7 @@ public class TurnBasedGame_SP : MonoBehaviour
     [SerializeField] float defenseGoodMax = 0.58f;
     [SerializeField] float defenseGoodReduction = 0.5f;
     [SerializeField] float defenseBadReduction = 0f;
+    [SerializeField] DiceThrowController diceThrowController;
 
     [Header("Efectos de Combate")]
     public PanelActivador panelDaño;
@@ -46,7 +46,6 @@ public class TurnBasedGame_SP : MonoBehaviour
     CombatInputState inputState = CombatInputState.Ready;
     readonly Transform[] diceByBattle = new Transform[3];
     Transform activeDie;
-    DiceThrowController diceThrowController;
     EnemyDicePreviewController enemyDicePreviewController;
     BattleRewardController battleRewardController;
     bool defenseWindowOpen;
@@ -65,18 +64,11 @@ public class TurnBasedGame_SP : MonoBehaviour
         attackButton.onClick.AddListener(OnAttackButtonPressed);
         SetAttackButtonText("Preparar dado");
 
-        if (defenseButton != null)
-        {
-            defenseButton.onClick.AddListener(OnDefenseButtonPressed);
-            defenseButton.gameObject.SetActive(false);
-        }
-
         if (precisionSlider != null) precisionSlider.Hide();
-        if (defenseSlider != null) defenseSlider.Hide();
 
         ModelsLoader loader = ModelsLoader.Instance;
         if (loader != null)
-            yield return loader.EnsureModelsLoaded();
+            yield return loader.EnsureModelsLoaded(currentMonster);
 
         SpawnMonster();
     }
@@ -88,6 +80,12 @@ public class TurnBasedGame_SP : MonoBehaviour
 
     void OnAttackButtonPressed()
     {
+        if (defenseWindowOpen)
+        {
+            OnDefenseButtonPressed();
+            return;
+        }
+
         if (playerHP <= 0 || inputState == CombatInputState.Resolving)
             return;
 
@@ -112,7 +110,7 @@ public class TurnBasedGame_SP : MonoBehaviour
             precisionSlider.Begin(GetRiskAdjustedSliderSpeed(config.sliderSpeed));
 
         SetAttackButtonText("Lanzar dado");
-        Log("Prepara el lanzamiento: detén el slider en la zona de precisión, no en la fuerza máxima.");
+        Log("Prepara el lanzamiento: sincroniza el Foco de Poder para potenciar el dado.");
     }
 
     IEnumerator ResolvePlayerAttack(float precision)
@@ -125,7 +123,7 @@ public class TurnBasedGame_SP : MonoBehaviour
         DiceRollResult result = BuildRollResult(config, roll, precision);
 
         if (diceResultText != null)
-            diceResultText.text = result.criticalFailure ? "1 - Fallo critico" : result.roll.ToString();
+            diceResultText.text = result.roll.ToString();
 
         Log("[Jugador] " + result);
 
@@ -167,15 +165,12 @@ public class TurnBasedGame_SP : MonoBehaviour
 
         defenseWindowOpen = true;
         pendingDefenseReduction = defenseBadReduction;
-        if (defenseButton != null)
-        {
-            defenseButton.gameObject.SetActive(true);
-            defenseButton.interactable = true;
-        }
-        if (defenseSlider != null)
-            defenseSlider.Begin(config.sliderSpeed * 1.25f);
+        if (precisionSlider != null)
+            precisionSlider.Begin(config.sliderSpeed * 1.25f);
+        attackButton.interactable = true;
+        SetAttackButtonText("Defender");
 
-        Log("El enemigo prepara su dado. Puedes defenderte en la zona buena.");
+        Log("El enemigo prepara su dado. Activa Defender cuando el Foco de Poder este alineado para reducir daño.");
 
         if (enemyDicePreviewController != null)
             yield return enemyDicePreviewController.SpinAndReveal(activeDie, enemyRoll, config.enemySpinSeconds, diceSpinSpeed);
@@ -183,13 +178,9 @@ public class TurnBasedGame_SP : MonoBehaviour
             yield return new WaitForSeconds(config.enemySpinSeconds);
 
         defenseWindowOpen = false;
-        if (defenseButton != null)
-        {
-            defenseButton.interactable = false;
-            defenseButton.gameObject.SetActive(false);
-        }
-        if (defenseSlider != null)
-            defenseSlider.Hide();
+        attackButton.interactable = false;
+        if (precisionSlider != null)
+            precisionSlider.Hide();
 
         int dmgToPlayer = Mathf.Max(0, Mathf.CeilToInt(enemyRoll * (1f - pendingDefenseReduction)));
         playerHP -= dmgToPlayer;
@@ -216,12 +207,13 @@ public class TurnBasedGame_SP : MonoBehaviour
         if (!defenseWindowOpen)
             return;
 
-        float value = defenseSlider != null ? defenseSlider.Stop() : 0f;
+        float value = precisionSlider != null ? precisionSlider.Stop() : 0f;
         bool good = value >= Mathf.Min(defenseGoodMin, defenseGoodMax) && value <= Mathf.Max(defenseGoodMin, defenseGoodMax);
         pendingDefenseReduction = good ? defenseGoodReduction : defenseBadReduction;
         defenseWindowOpen = false;
-        if (defenseButton != null)
-            defenseButton.interactable = false;
+        attackButton.interactable = false;
+        if (precisionSlider != null)
+            precisionSlider.Hide();
 
         Log(good ? "Defensa precisa: daño enemigo reducido." : "Defensa imprecisa: casi no reduces el golpe.");
     }
@@ -325,10 +317,14 @@ public class TurnBasedGame_SP : MonoBehaviour
         inputState = CombatInputState.Reward;
         attackButton.interactable = false;
         SetAttackButtonText("Continuar");
-        Log("¡Monstruo derrotado! Recompensa de ave desbloqueada.");
+
+        bool finalMonsterDefeated = currentMonster >= monsterHP.Length - 1;
+        Log(finalMonsterDefeated
+            ? "¡Monstruo derrotado! Carta de ave desbloqueada."
+            : "¡Monstruo derrotado! Has recibido una pista de ave.");
 
         if (battleRewardController != null)
-            yield return battleRewardController.GrantReward(currentMonster);
+            yield return battleRewardController.GrantReward(currentMonster, finalMonsterDefeated);
 
         currentMonster++;
 
@@ -340,6 +336,10 @@ public class TurnBasedGame_SP : MonoBehaviour
         }
         else
         {
+            ModelsLoader loader = ModelsLoader.Instance;
+            if (loader != null)
+                yield return loader.EnsureModelsLoaded(currentMonster);
+
             SpawnMonster();
         }
     }
@@ -382,9 +382,17 @@ public class TurnBasedGame_SP : MonoBehaviour
     void EnsureRuntimeHelpers()
     {
         if (diceThrowController == null)
+            diceThrowController = GetComponent<DiceThrowController>();
+        if (diceThrowController == null)
             diceThrowController = gameObject.AddComponent<DiceThrowController>();
+
+        if (enemyDicePreviewController == null)
+            enemyDicePreviewController = GetComponent<EnemyDicePreviewController>();
         if (enemyDicePreviewController == null)
             enemyDicePreviewController = gameObject.AddComponent<EnemyDicePreviewController>();
+
+        if (battleRewardController == null)
+            battleRewardController = GetComponent<BattleRewardController>();
         if (battleRewardController == null)
             battleRewardController = gameObject.AddComponent<BattleRewardController>();
 
@@ -399,10 +407,6 @@ public class TurnBasedGame_SP : MonoBehaviour
 
         if (precisionSlider == null)
             precisionSlider = CreateSlider(canvas.transform, "PrecisionSlider", new Vector2(0f, -210f));
-        if (defenseSlider == null)
-            defenseSlider = CreateSlider(canvas.transform, "DefenseSlider", new Vector2(0f, -260f));
-        if (defenseButton == null)
-            defenseButton = CreateButton(canvas.transform, "ButtonDefense", "Defender", new Vector2(270f, -260f));
         if (diceResultText == null)
             diceResultText = CreateText(canvas.transform, "DiceResultText", new Vector2(0f, -310f), 32);
         if (rewardText == null)
@@ -424,24 +428,6 @@ public class TurnBasedGame_SP : MonoBehaviour
         slider.maxValue = 1f;
         slider.value = 0f;
         return go.AddComponent<PrecisionSliderController>();
-    }
-
-    Button CreateButton(Transform parent, string name, string label, Vector2 anchoredPosition)
-    {
-        GameObject go = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
-        go.transform.SetParent(parent, false);
-        RectTransform rect = go.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(150f, 44f);
-        rect.anchoredPosition = anchoredPosition;
-
-        TMP_Text text = CreateText(go.transform, "Text", Vector2.zero, 22);
-        text.text = label;
-        text.alignment = TextAlignmentOptions.Center;
-        text.rectTransform.anchorMin = Vector2.zero;
-        text.rectTransform.anchorMax = Vector2.one;
-        text.rectTransform.offsetMin = Vector2.zero;
-        text.rectTransform.offsetMax = Vector2.zero;
-        return go.GetComponent<Button>();
     }
 
     TMP_Text CreateText(Transform parent, string name, Vector2 anchoredPosition, int size)
@@ -525,8 +511,6 @@ public class TurnBasedGame_SP : MonoBehaviour
         if (panelDaño != null)
             panelDaño.MostrarPanelConDaño(damage, Mathf.Max(1, maxDamage));
 
-        if (diceResultText != null)
-            diceResultText.text = quality + "  -" + damage;
     }
 
     void SetAttackButtonText(string text)

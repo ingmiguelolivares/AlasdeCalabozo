@@ -14,7 +14,7 @@ public class EnemyDicePreviewController : MonoBehaviour
     public IEnumerator SpinAndReveal(Transform die, int result, float seconds, float spinSpeed)
     {
         if (resultText != null)
-            resultText.text = "?";
+            resultText.text = "";
 
         float elapsed = 0f;
         while (elapsed < seconds)

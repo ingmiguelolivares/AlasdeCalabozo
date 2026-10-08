@@ -4,9 +4,9 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Collections;
 using System.Collections.Generic;
 
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
 public class CartasLoader : MonoBehaviour
 {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
     IEnumerator Start()
     {
         yield return ImprimirCartasEnCarpeta();
@@ -31,5 +31,5 @@ public class CartasLoader : MonoBehaviour
 
         Addressables.Release(handle);
     }
-}
 #endif
+}

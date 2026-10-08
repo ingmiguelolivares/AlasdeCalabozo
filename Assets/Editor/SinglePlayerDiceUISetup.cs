@@ -29,21 +29,17 @@ public static class SinglePlayerDiceUISetup
         }
 
         PrecisionSliderController precisionSlider = EnsureSlider(canvas.transform, "PrecisionSlider", new Vector2(0f, -210f), "Precision Fill");
-        PrecisionSliderController defenseSlider = EnsureSlider(canvas.transform, "DefenseSlider", new Vector2(0f, -260f), "Defense Fill");
-        Button defenseButton = EnsureButton(canvas.transform, "ButtonDefense", "Defender", new Vector2(270f, -260f));
+        DeleteIfExists(canvas.transform, "DefenseSlider");
+        DeleteIfExists(canvas.transform, "ButtonDefense");
         TMP_Text diceResultText = EnsureText(canvas.transform, "DiceResultText", new Vector2(0f, -310f), new Vector2(620f, 70f), 32, "");
-        TMP_Text rewardText = EnsureText(canvas.transform, "BirdRewardText", new Vector2(0f, 120f), new Vector2(720f, 180f), 22, "");
+        TMP_Text rewardText = EnsureText(canvas.transform, "BirdRewardText", new Vector2(0f, 120f), new Vector2(720f, 90f), 22, "");
 
         precisionSlider.gameObject.SetActive(false);
-        defenseSlider.gameObject.SetActive(false);
-        defenseButton.gameObject.SetActive(false);
         diceResultText.gameObject.SetActive(true);
         rewardText.gameObject.SetActive(false);
 
         SerializedObject serializedCombat = new SerializedObject(combat);
         Assign(serializedCombat, "precisionSlider", precisionSlider);
-        Assign(serializedCombat, "defenseSlider", defenseSlider);
-        Assign(serializedCombat, "defenseButton", defenseButton);
         Assign(serializedCombat, "diceResultText", diceResultText);
         Assign(serializedCombat, "rewardText", rewardText);
         serializedCombat.ApplyModifiedPropertiesWithoutUndo();
@@ -103,28 +99,11 @@ public static class SinglePlayerDiceUISetup
         return controller;
     }
 
-    static Button EnsureButton(Transform parent, string name, string label, Vector2 anchoredPosition)
+    static void DeleteIfExists(Transform parent, string name)
     {
         Transform existing = parent.Find(name);
-        GameObject root = existing != null ? existing.gameObject : new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
-        if (existing == null)
-            root.transform.SetParent(parent, false);
-
-        RectTransform rect = root.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0.5f, 0.5f);
-        rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.pivot = new Vector2(0.5f, 0.5f);
-        rect.sizeDelta = new Vector2(150f, 44f);
-        rect.anchoredPosition = anchoredPosition;
-
-        Image image = root.GetComponent<Image>();
-        image.color = new Color(0.18f, 0.22f, 0.28f, 0.95f);
-
-        TMP_Text text = EnsureText(root.transform, "Text", Vector2.zero, rect.sizeDelta, 20, label);
-        text.alignment = TextAlignmentOptions.Center;
-        Stretch(text.rectTransform, Vector2.zero, Vector2.zero);
-
-        return root.GetComponent<Button>();
+        if (existing != null)
+            Object.DestroyImmediate(existing.gameObject);
     }
 
     static TMP_Text EnsureText(Transform parent, string name, Vector2 anchoredPosition, Vector2 size, int fontSize, string textValue)

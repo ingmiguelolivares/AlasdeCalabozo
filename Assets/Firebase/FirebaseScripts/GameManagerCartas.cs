@@ -294,10 +294,10 @@ public static class CardSpriteProvider
             }
 #endif
 
-            Sprite resourceSprite = Resources.Load<Sprite>(ResourcesCardsPath + resourceName);
+            Sprite resourceSprite = LoadResourceSprite(resourceName);
             if (resourceSprite == null)
             {
-                resourceSprite = Resources.Load<Sprite>(ResourcesCardsPath + cardName);
+                resourceSprite = LoadResourceSprite(cardName);
             }
 
             onLoaded?.Invoke(resourceSprite);
@@ -358,5 +358,26 @@ public static class CardSpriteProvider
         }
 
         return cardName;
+    }
+
+    static Sprite LoadResourceSprite(string resourceName)
+    {
+        Sprite sprite = Resources.Load<Sprite>(ResourcesCardsPath + resourceName);
+        if (sprite != null)
+        {
+            return sprite;
+        }
+
+        Texture2D texture = Resources.Load<Texture2D>(ResourcesCardsPath + resourceName);
+        if (texture == null)
+        {
+            return null;
+        }
+
+        return Sprite.Create(
+            texture,
+            new Rect(0f, 0f, texture.width, texture.height),
+            new Vector2(0.5f, 0.5f),
+            100f);
     }
 }

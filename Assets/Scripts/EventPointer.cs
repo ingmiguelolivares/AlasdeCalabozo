@@ -92,10 +92,20 @@ public class EventPointer : MonoBehaviour
     void OnTap()
     {
         if (menuUIManager == null) return;
-        if (playerLocation == null) return;
 
         //para restringir dependiendo de la distancia del usuario deshabilitado temporalmente
-        var currentPlayerLocation = new GeoCoordinatePortable.GeoCoordinate(playerLocation.GetLocationLat(), playerLocation.GetLocationLon());
+        Vector2d currentLocation;
+        if (spawner != null && spawner.TryGetCurrentUserLocation(out currentLocation))
+        {
+            // Uses scene-player fallback when location services are unavailable.
+        }
+        else
+        {
+            if (playerLocation == null) return;
+            currentLocation = new Vector2d(playerLocation.GetLocationLat(), playerLocation.GetLocationLon());
+        }
+
+        var currentPlayerLocation = new GeoCoordinatePortable.GeoCoordinate(currentLocation.x, currentLocation.y);
         var eventLocation = new GeoCoordinatePortable.GeoCoordinate(eventPose[0], eventPose[1]);
         var distance = currentPlayerLocation.GetDistanceTo(eventLocation);
 #if UNITY_EDITOR || DEVELOPMENT_BUILD

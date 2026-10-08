@@ -4,7 +4,6 @@ using Mapbox.Utils;
 
 public class WebGLLocationProvider : AbstractLocationProvider
 {
-    private Location _currentLocation = new Location();
     private bool _locationReady = false;
 
     /// <summary>
@@ -18,10 +17,12 @@ public class WebGLLocationProvider : AbstractLocationProvider
             LatitudeLongitude = new Vector2d(latitude, longitude),
             Timestamp = Time.time,
             Accuracy = 1f,
+            IsLocationServiceEnabled = true,
             IsLocationUpdated = true
         };
 
         _locationReady = true;
+        SendLocation(_currentLocation);
 
         Debug.Log($"🌍 WebGLLocationProvider: ubicación inyectada -> lat: {latitude}, lon: {longitude}");
     }
@@ -29,11 +30,8 @@ public class WebGLLocationProvider : AbstractLocationProvider
     /// <summary>
     /// Unity llamará constantemente a esta propiedad para obtener la ubicación actual.
     /// </summary>
-    public new Location CurrentLocation
-{
-	get
-	{
-		return _locationReady ? _currentLocation : new Location();
-	}
-}
+    public bool HasLocationReady()
+    {
+        return _locationReady;
+    }
 }

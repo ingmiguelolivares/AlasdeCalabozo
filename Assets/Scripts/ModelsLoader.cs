@@ -25,6 +25,7 @@ public class ModelsLoader : MonoBehaviourPun
 
     [Header("Addressables")]
     [SerializeField] bool loadAddressableModelsWhenArraysEmpty = true;
+    [SerializeField] bool preloadAllDifficultiesOnStart;
     [SerializeField] string easyModelsLabel = "monsters_easy";
     [SerializeField] string mediumModelsLabel = "monsters_medium";
     [SerializeField] string hardModelsLabel = "monsters_hard";
@@ -44,7 +45,8 @@ public class ModelsLoader : MonoBehaviourPun
 
     IEnumerator Start()
     {
-        yield return EnsureModelsLoaded();
+        if (preloadAllDifficultiesOnStart)
+            yield return EnsureModelsLoaded();
     }
 
     public IEnumerator EnsureModelsLoaded()
@@ -91,6 +93,48 @@ public class ModelsLoader : MonoBehaviourPun
         IsReady = true;
     }
 
+    public IEnumerator EnsureModelsLoaded(int difficulty)
+    {
+        switch (difficulty)
+        {
+            case 0:
+                if (easyModels == null || easyModels.Length == 0)
+                {
+                    if (loadAddressableModelsWhenArraysEmpty)
+                        yield return LoadAddressableModels(easyModelsLabel, result => easyModels = result);
+
+                    if (easyModels == null || easyModels.Length == 0)
+                        easyModels = Resources.LoadAll<GameObject>("ModelosBichitos/Easy").OrderBy(m => m.name).ToArray();
+                }
+                BuildLookup(easyModels, easyLookup);
+                break;
+
+            case 1:
+                if (mediumModels == null || mediumModels.Length == 0)
+                {
+                    if (loadAddressableModelsWhenArraysEmpty)
+                        yield return LoadAddressableModels(mediumModelsLabel, result => mediumModels = result);
+
+                    if (mediumModels == null || mediumModels.Length == 0)
+                        mediumModels = Resources.LoadAll<GameObject>("ModelosBichitos/Medium").OrderBy(m => m.name).ToArray();
+                }
+                BuildLookup(mediumModels, mediumLookup);
+                break;
+
+            case 2:
+                if (hardModels == null || hardModels.Length == 0)
+                {
+                    if (loadAddressableModelsWhenArraysEmpty)
+                        yield return LoadAddressableModels(hardModelsLabel, result => hardModels = result);
+
+                    if (hardModels == null || hardModels.Length == 0)
+                        hardModels = Resources.LoadAll<GameObject>("ModelosBichitos/Hard").OrderBy(m => m.name).ToArray();
+                }
+                BuildLookup(hardModels, hardLookup);
+                break;
+        }
+    }
+
     static IEnumerator LoadAddressableModels(string label, System.Action<GameObject[]> assign)
     {
         if (string.IsNullOrWhiteSpace(label))
@@ -126,6 +170,11 @@ public class ModelsLoader : MonoBehaviourPun
     [PunRPC]
     public void SpawnMonsterByName(int difficulty, string prefabName)
     {
+        StartCoroutine(SpawnMonsterByNameRoutine(difficulty, prefabName));
+    }
+
+    IEnumerator SpawnMonsterByNameRoutine(int difficulty, string prefabName)
+    {
         Dictionary<string, GameObject> lookup = difficulty switch
         {
             0 => easyLookup,
@@ -137,13 +186,27 @@ public class ModelsLoader : MonoBehaviourPun
         if (lookup == null)
         {
             Debug.LogError("❌ Dificultad fuera de rango en SpawnMonsterByName");
-            return;
+            yield break;
         }
 
-        if (!lookup.TryGetValue(prefabName, out var prefab) || prefab == null)
+        GameObject prefab;
+        if (!lookup.TryGetValue(prefabName, out prefab) || prefab == null)
+        {
+            yield return EnsureModelsLoaded(difficulty);
+
+            lookup = difficulty switch
+            {
+                0 => easyLookup,
+                1 => mediumLookup,
+                2 => hardLookup,
+                _ => null
+            };
+        }
+
+        if (lookup == null || !lookup.TryGetValue(prefabName, out prefab) || prefab == null)
         {
             Debug.LogError($"❌ Prefab '{prefabName}' no encontrado en cliente.");
-            return;
+            yield break;
         }
 
         // Destruir hijos actuales en spawnPoint antes de crear nuevo

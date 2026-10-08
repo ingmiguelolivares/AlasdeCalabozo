@@ -1,6 +1,5 @@
 using UnityEngine;
 
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
 public class positions : MonoBehaviour
 {
     public Transform jugador;
@@ -8,6 +7,7 @@ public class positions : MonoBehaviour
 
     void Update()
     {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         if (jugador != null && mapa != null)
         {
             Debug.Log($"[Jugador] Posición: {jugador.position}, Rotación: {jugador.rotation.eulerAngles}");
@@ -17,6 +17,6 @@ public class positions : MonoBehaviour
         {
             Debug.LogWarning("🚨 Asigna referencias a 'jugador' y 'mapa' en el Inspector.");
         }
+#endif
     }
 }
-#endif
