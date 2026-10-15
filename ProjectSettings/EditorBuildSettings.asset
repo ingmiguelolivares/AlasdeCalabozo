@@ -26,19 +26,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ComoJugar 2.unity
     guid: b0efb3c26f84289469d266c0a9dbed84
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/multijugador/MainMenu.unity
     guid: f7147cc4341df354d8677838fa17871f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/multijugador/Lobby.unity
     guid: 8d31443e5d6895645aca0ff022aa4f19
   - enabled: 1
     path: Assets/Scenes/multijugador/SinglePlayer.unity
     guid: 17229feaa2cfc8f43811207b73202480
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/multijugador/multplayertest02.unity
     guid: 41dc4b356f7ae694187bcdf138c414a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/multijugador/FinalBoss.unity
     guid: c9cbea0f4249e55418f54371ecc208bf
   - enabled: 1

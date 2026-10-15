@@ -27,7 +27,7 @@
 		public void DrawUI(SerializedProperty subLayerCoreOptions, SerializedProperty layerProperty, VectorPrimitiveType primitiveTypeProp)
 		{
 
-			objectId = layerProperty.serializedObject.targetObject.GetInstanceID().ToString();
+			objectId = layerProperty.serializedObject.targetObject.GetEntityId().ToString();
 
 			EditorGUILayout.BeginVertical();
 			showModeling = EditorGUILayout.Foldout(showModeling, new GUIContent { text = "Modeling", tooltip = "This section provides you with options to fine tune your meshes" });

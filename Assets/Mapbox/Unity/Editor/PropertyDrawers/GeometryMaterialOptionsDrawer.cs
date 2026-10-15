@@ -84,7 +84,7 @@
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
 
-			objectId = property.serializedObject.targetObject.GetInstanceID().ToString();
+			objectId = property.serializedObject.targetObject.GetEntityId().ToString();
 
 			showTexturing = EditorGUILayout.Foldout(showTexturing, new GUIContent { text = "Texturing", tooltip = "Material options to texture the generated building geometry" });
 			if (showTexturing)

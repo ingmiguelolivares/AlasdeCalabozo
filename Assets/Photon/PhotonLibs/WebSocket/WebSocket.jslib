@@ -13,8 +13,7 @@ SocketCreate: function(url, protocols, openCallback, recvCallback, errorCallback
     socket.socket.binaryType = 'arraybuffer';
     
     socket.socket.onopen = function () {
-    Module.dynCall_
-        Module.dynCall_vi(openCallback, instance);
+        getWasmTableEntry(openCallback)(instance);
     }
     socket.socket.onmessage = function (e) {
         if (e.data instanceof ArrayBuffer)
@@ -23,17 +22,17 @@ SocketCreate: function(url, protocols, openCallback, recvCallback, errorCallback
             const ptr = _malloc(b.byteLength);
             const dataHeap = new Int8Array(HEAPU8.buffer, ptr, b.byteLength);
             dataHeap.set(new Int8Array(b));
-            Module.dynCall_viii(recvCallback, instance, ptr, b.byteLength);
+            getWasmTableEntry(recvCallback)(instance, ptr, b.byteLength);
             _free(ptr);
         }
     };
     socket.socket.onerror = function (e) {
-        Module.dynCall_vii(errorCallback, instance, e.code);
+        getWasmTableEntry(errorCallback)(instance, e.code);
     }
     socket.socket.onclose = function (e) {
         if (e.code != 1000)
         {
-            Module.dynCall_vii(closeCallback, instance, e.code);
+            getWasmTableEntry(closeCallback)(instance, e.code);
         }
     }
     return instance;

@@ -45,7 +45,7 @@
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
-			objectId = property.serializedObject.targetObject.GetInstanceID().ToString();
+			objectId = property.serializedObject.targetObject.GetEntityId().ToString();
 
 			var sourceTypeProperty = property.FindPropertyRelative("sourceType");
 

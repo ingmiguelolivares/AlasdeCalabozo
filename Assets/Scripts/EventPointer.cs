@@ -61,7 +61,7 @@ public class EventPointer : MonoBehaviour
         {
             Ray ray = raycastCamera.ScreenPointToRay(Input.GetTouch(0).position);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.transform == transform)
+            if (Physics.Raycast(ray, out hit) && hit.collider.GetComponentInParent<EventPointer>() == this)
             {
                 OnTap();
             }
@@ -73,7 +73,7 @@ public class EventPointer : MonoBehaviour
         {
             Ray ray = raycastCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.transform == transform)
+            if (Physics.Raycast(ray, out hit) && hit.collider.GetComponentInParent<EventPointer>() == this)
             {
                 OnTap();
             }
@@ -83,23 +83,15 @@ public class EventPointer : MonoBehaviour
 
     void OnTap()
     {
-        if (menuUIManager == null) return;
-        if (playerLocation == null) return;
-
-        //para restringir dependiendo de la distancia del usuario deshabilitado temporalmente
-        var currentPlayerLocation = new GeoCoordinatePortable.GeoCoordinate(playerLocation.GetLocationLat(), playerLocation.GetLocationLon());
-        var eventLocation = new GeoCoordinatePortable.GeoCoordinate(eventPose[0], eventPose[1]);
-        var distance = currentPlayerLocation.GetDistanceTo(eventLocation);
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        Debug.Log("Distance is " + distance);
-#endif
-
-        if (eventManager != null && distance > eventManager.MaxDistance)
+        if (menuUIManager == null)
         {
-            menuUIManager.DisplayUserNotInRangePanel();
+            Debug.LogError("❌ No se encontró MenuUIManager; no se puede abrir el panel del calabozo.");
             return;
         }
 
+        // Los eventos WebGL se generan alrededor del jugador, por lo que no se
+        // bloquean por distancia. Esto abre el panel EventPanelUserInRangeID1.
+        Debug.Log($"🏛️ Pirámide seleccionada: abriendo panel para el evento {eventID}.");
         menuUIManager.DisplayStartEventPanel(eventID);
     }
 }

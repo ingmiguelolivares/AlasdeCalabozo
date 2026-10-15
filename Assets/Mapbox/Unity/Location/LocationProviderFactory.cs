@@ -168,6 +168,13 @@ namespace Mapbox.Unity.Location
 		#if UNITY_WEBGL && !UNITY_EDITOR
 			if (_webGLLocationProvider != null)
 			{
+				// The stock device provider cannot obtain GPS in the browser. Leaving it
+				// active causes it to emit an error even though WebGL uses our provider.
+				if (_deviceLocationProviderUnity != null)
+				{
+					_deviceLocationProviderUnity.enabled = false;
+				}
+
 				Debug.LogFormat("LocationProviderFactory: Injected WebGL Location Provider – {0}", _webGLLocationProvider.GetType());
 				DefaultLocationProvider = _webGLLocationProvider;
 			}

@@ -6,6 +6,9 @@
 	using UnityEditor.IMGUI.Controls;
 	using UnityEditor;
 	using Mapbox.Unity.Map;
+	using TreeView = UnityEditor.IMGUI.Controls.TreeView<int>;
+	using TreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<int>;
+	using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 
 	public class PointsOfInterestSubLayerTreeView : TreeView
 	{

@@ -29,6 +29,7 @@
         GameObject _markerPrefab;
 
         List<GameObject> _spawnedObjects;
+        bool _eventSpawnStarted;
 
         [SerializeField]
         private Transform jugador;
@@ -89,8 +90,15 @@
         }
         
          public float tiempoDeEspera = 3f;
-            public void IniciarProceso()
+         public void IniciarProceso()
         {
+            if (_eventSpawnStarted)
+            {
+                Debug.Log("🗺️ Los eventos del mapa ya fueron creados; selecciona una pirámide para continuar.");
+                return;
+            }
+
+            _eventSpawnStarted = true;
 
             foreach (GameObject obj in _spawnedObjects)
             {

@@ -5,6 +5,8 @@
 	using UnityEditor.IMGUI.Controls;
 	using UnityEditor;
 	using Mapbox.Unity.Map;
+	using TreeViewItemBase = UnityEditor.IMGUI.Controls.TreeViewItem<int>;
+	using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 
 	internal class FeatureSubLayerTreeView : TreeViewWithTreeModel<FeatureTreeElement>
 	{
@@ -37,7 +39,7 @@
 			Reload();
 		}
 
-		protected override bool CanRename(TreeViewItem item)
+		protected override bool CanRename(TreeViewItemBase item)
 		{
 			// Only allow rename if we can show the rename overlay with a certain width (label might be clipped by other columns)
 			Rect renameRect = GetRenameRect(treeViewRect, 0, item);
@@ -62,7 +64,7 @@
 			}
 		}
 
-		protected override Rect GetRenameRect(Rect rowRect, int row, TreeViewItem item)
+		protected override Rect GetRenameRect(Rect rowRect, int row, TreeViewItemBase item)
 		{
 			Rect cellRect = GetCellRectForTreeFoldouts(rowRect);
 			cellRect.xMin = nameOffset;

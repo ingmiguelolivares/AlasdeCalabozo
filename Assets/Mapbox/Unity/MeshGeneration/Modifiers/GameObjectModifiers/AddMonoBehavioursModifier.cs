@@ -27,7 +27,7 @@
 		{
 			foreach (var t in _types)
 			{
-				_tempId = ve.GameObject.GetInstanceID() + t.Type.FullName;
+				_tempId = ve.GameObject.GetEntityId().ToString() + t.Type.FullName;
 				if (!_scripts.Contains(_tempId))
 				{
 					ve.GameObject.AddComponent(t.Type);

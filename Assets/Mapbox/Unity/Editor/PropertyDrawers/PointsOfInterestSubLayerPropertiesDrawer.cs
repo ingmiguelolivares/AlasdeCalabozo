@@ -6,6 +6,7 @@ namespace Mapbox.Unity.Map
 	using Mapbox.Editor;
 	using UnityEditor.IMGUI.Controls;
 	using System.Linq;
+	using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 
 	public class PointsOfInterestSubLayerPropertiesDrawer
 	{
@@ -39,7 +40,7 @@ namespace Mapbox.Unity.Map
 
 		public void DrawUI(SerializedProperty property)
 		{
-			objectId = property.serializedObject.targetObject.GetInstanceID().ToString();
+			objectId = property.serializedObject.targetObject.GetEntityId().ToString();
 			var prefabItemArray = property.FindPropertyRelative("locationPrefabList");
 			var layersRect = EditorGUILayout.GetControlRect(GUILayout.MinHeight(Mathf.Max(prefabItemArray.arraySize + 1, 1) * _lineHeight + MultiColumnHeader.DefaultGUI.defaultHeight),
 															GUILayout.MaxHeight((prefabItemArray.arraySize + 1) * _lineHeight + MultiColumnHeader.DefaultGUI.defaultHeight));

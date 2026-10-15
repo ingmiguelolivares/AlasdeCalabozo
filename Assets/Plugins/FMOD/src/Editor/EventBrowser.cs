@@ -6,6 +6,8 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using System.IO;
+using TreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<int>;
+using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 
 namespace FMODUnity
 {
@@ -99,7 +101,7 @@ namespace FMODUnity
             treeView.Reload();
         }
 
-        private class TreeView : UnityEditor.IMGUI.Controls.TreeView
+        private class TreeView : UnityEditor.IMGUI.Controls.TreeView<int>
         {
             private static readonly Texture2D folderOpenIcon = EditorUtils.LoadImage("FolderIconOpen.png");
             private static readonly Texture2D folderClosedIcon = EditorUtils.LoadImage("FolderIconClosed.png");
@@ -1628,7 +1630,7 @@ namespace FMODUnity
 
                 SceneView.duringSceneGui += SceneUpdate;
 
-                EditorApplication.hierarchyWindowItemOnGUI += HierarchyUpdate;
+                EditorApplication.hierarchyWindowItemByEntityIdOnGUI += HierarchyUpdate;
 
                 if (isStandaloneWindow)
                 {
@@ -1667,7 +1669,7 @@ namespace FMODUnity
         }
 
         // This is an event handler on the hierachy view to handle dragging our objects from the browser
-        private void HierarchyUpdate(int instance, Rect rect)
+        private void HierarchyUpdate(EntityId entityId, Rect rect)
         {
             if (Event.current.type == EventType.DragPerform && rect.Contains(Event.current.mousePosition))
             {
@@ -1675,7 +1677,7 @@ namespace FMODUnity
                 {
                     UnityEngine.Object data = DragAndDrop.objectReferences[0];
 
-                    GameObject target = EditorUtility.InstanceIDToObject(instance) as GameObject;
+                    GameObject target = EditorUtility.EntityIdToObject(entityId) as GameObject;
 
                     if (data is EditorEventRef)
                     {

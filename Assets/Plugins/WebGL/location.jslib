@@ -8,11 +8,13 @@ mergeInto(LibraryManager.library, {
           SendMessage("Map", "OnLocationReceived", lat.toFixed(10) + ";" + lon.toFixed(10));
         },
         function (error) {
-          console.error("❌ Error al obtener ubicación:", error.message);
+          console.warn("⚠️ No se obtuvo ubicación:", error.message);
+          SendMessage("Map", "OnLocationFailed", error.message || "Ubicación no disponible");
         }
       );
     } else {
-      console.error("❌ Geolocalización no es compatible en este navegador.");
+      console.warn("⚠️ Geolocalización no es compatible en este navegador.");
+      SendMessage("Map", "OnLocationFailed", "Geolocalización no compatible");
     }
   }
 });

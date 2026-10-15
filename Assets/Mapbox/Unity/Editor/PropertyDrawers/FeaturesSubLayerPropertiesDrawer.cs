@@ -12,6 +12,7 @@
 	using Mapbox.Platform.TilesetTileJSON;
 	using Mapbox.Editor;
 	using System;
+	using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 
 	public class FeaturesSubLayerPropertiesDrawer
 	{
@@ -83,7 +84,7 @@
 		public void DrawUI(SerializedProperty property)
 		{
 
-			objectId = property.serializedObject.targetObject.GetInstanceID().ToString();
+			objectId = property.serializedObject.targetObject.GetEntityId().ToString();
 			var serializedMapObject = property.serializedObject;
 			AbstractMap mapObject = (AbstractMap)serializedMapObject.targetObject;
 			tileJSONData = mapObject.VectorData.GetTileJsonData();
